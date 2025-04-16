@@ -1,0 +1,45 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0A52BD;
+
+  .language-switch {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+
+  .login-model {
+    width: 400px;
+    min-height: 260px;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 2px 25px 0 rgb(0 0 0 / 30%);
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 30px;
+
+      .logo-img {
+        width: 280px;
+        height: 60px;
+        background: url('../../assets/images/logo.svg') 50% no-repeat;
+        margin: 0 auto;
+      }
+    }
+
+    .form-model {
+      padding: 30px 20px;
+    }
+
+    .oauth2-provider {
+      margin-top: 10px;
+      margin-bottom: 30px;
+    }
+  }
+}
