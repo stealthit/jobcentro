@@ -4,6 +4,9 @@ import styles from './index.module.scss'
 
 const Logo = defineComponent({
   name: 'Logo',
+  props: {
+    isShowSide: Boolean
+  },
   setup() {
     const themeStore = useThemeStore()
 
@@ -11,12 +14,8 @@ const Logo = defineComponent({
   },
   render() {
     return (
-      <div
-        class={[
-          styles.logo,
-          styles[`logo-img`]
-        ]}
-      />
+      // 2025.04.21 pub_sunhee
+     <div class={this.isShowSide ? [styles.logo, styles.on] : styles.logo} />
     )
   }
 })

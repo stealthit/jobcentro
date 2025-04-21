@@ -53,31 +53,19 @@ const Navbar = defineComponent({
   },
   render() {
     return (
-      <div class={styles.container}>
-        <Logo />
-        <div class={styles.nav}>
-          <NMenu
-            value={this.menuKey}
-            mode='horizontal'
-            options={this.headerMenuOptions}
-            onUpdateValue={this.handleMenuClick}
-          />
-        </div>
+      <div class={styles.container}>        
+        <ul class={styles.nav}>
+          <li><img alt="" class="ic-menu1" />Home</li>  
+          <li class={styles.cur}><img alt="" class="ic-menu2" />배치 관리</li>  
+          <li><img alt="" class="ic-menu3" />작업 리소스</li>  
+          <li><img alt="" class="ic-menu4" />예측</li>  
+          <li><img alt="" class="ic-menu5" />리포팅</li>  
+          <li><img alt="" class="ic-menu6" />모니터링</li>  
+          <li><img alt="" class="ic-menu7" />시스템 관리</li>  
+        </ul>
         <div class={styles.settings}>
-          <NButton quaternary onClick={this.handleUISettingClick}>
-            {{
-              icon: () => (
-                <NIcon size='16'>
-                  <SettingOutlined />
-                </NIcon>
-              ),
-              default: 'UI 설정'
-            }}
-          </NButton>
-          <Theme />
-          <Locales localesOptions={this.localesOptions} />
-          <Timezone timezoneOptions={this.timezoneOptions} />
-          <User userDropdownOptions={this.userDropdownOptions} />
+          <img src="" alt="" class="ic-profile" />
+          <img src="" alt="" class="ic-arr-down-12" />
         </div>
       </div>
     )

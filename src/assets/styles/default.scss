@@ -15,8 +15,48 @@
  * limitations under the License.
  */
 
+ @font-face {
+  font-family: 'Pretendard';
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url('@/assets/font/PretendardVariable.woff2') format('woff2-variations');
+}
+
+// variables 
+$img-path: '../images/';
+
+//layout
+$min-width: 1920px;
+$max-width: 100%;
+$gnb-height: 120px;
+$sidebar-width: 260px;
+
+$font-body: 14px;
+$font-weight: 400;
+$font-color: #4B5675;
+$line-height: 1.3;
+$line-height-headline: 1.5;
+$letter-spacing: false;
+
+$bg-body: #fff;
+
+// font
+$font-size-h1: 28px;
+$font-size-h2: 20px;
+$font-size-h3: 17px;
+$font-size-h4: 15px;
+
+$cl-error: #F24A4A;
+
+//header
+$header-bg: #1a75ff;
+
 * {
   outline: 0;
+  box-sizing: border-box;
+  font-size: $font-body;
+  color: $font-color;
 }
 
 html,
@@ -28,14 +68,247 @@ body {
   //::-webkit-scrollbar {
   //  display: none;
   //}
+  font-family:
+  'Pretendard',
+  -apple-system,
+  BlinkMacSystemFont,
+  Roboto,
+  'Apple SD Gothic Neo',
+  'Noto Sans KR',
+  'Malgun Gothic',
+  arial,
+  sans-serif;  
 }
 
-html,
 body,
+div,
 p,
+header,
+section,
+nav,
+footer,
+article,
+figure,
+aside,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
 dl,
+dt,
 dd,
-dt {
+table,
+th,
+td,
+form,
+fieldset,
+input,
+textarea,
+button,
+select,
+datalist,
+option,
+span,
+strong,
+b,
+em,
+i,
+a,
+label,
+pre,
+code {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {cursor: pointer;}
+.title-h1 {
+  font-size: $font-size-h1;
+  font-weight: 700;
+  color: #222;
+}
+
+.ic-tit-nece {
+  &::after {
+    content: "*";
+    padding-left: 2px;
+    color: #28CDC8;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+.input-label {
+  font-weight: 500;
+}
+.err-msg {
+  color: $cl-error;
+  font-size: 13px;
+  font-weight: 400;
+}
+// control
+.btn-menual {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 40px;
+  padding: 11px 24px;
+  border-radius: 20px;
+  background: #fff;
+  display: flex;
+  border: 1px solid #DBDFE9;
+  font-size: 15px;
+  font-weight: 700;
+  color: #4B5675;
+}
+
+.btn-sidebar {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  z-index: 10;
+  top: 30px;
+  left: 24px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+// images
+.ic-down {
+  width: 16px;
+  height: 16px;
+  content: url(#{$img-path}ic_down.svg);
+}
+
+.ic-menu {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  content: url(#{$img-path}ic_menu_w.svg);
+  &.gray {content: url(#{$img-path}ic_menu_g.svg);}
+}
+
+.ic-profile {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  content: url(#{$img-path}ic_profile.svg);
+}
+
+.ic-arr-down-12 {
+  width: 12px;
+  height: 12px;
+  content: url(#{$img-path}ic_arr_down_12.svg);
+}
+
+// menu icon
+.ic-menu1 {
+  width: 20px;
+  height: 20px;
+  content: url(#{$img-path}ic_menu1.svg);
+}
+.ic-menu2 {
+  width: 20px;
+  height: 20px;
+  content: url(#{$img-path}ic_menu2.svg);
+}
+.ic-menu3 {
+  width: 20px;
+  height: 20px;
+  content: url(#{$img-path}ic_menu3.svg);
+}
+.ic-menu4 {
+  width: 20px;
+  height: 20px;
+  content: url(#{$img-path}ic_menu4.svg);
+}
+.ic-menu5 {
+  width: 20px;
+  height: 20px;
+  content: url(#{$img-path}ic_menu5.svg);
+}
+.ic-menu6 {
+  width: 20px;
+  height: 20px;
+  content: url(#{$img-path}ic_menu6.svg);
+}
+.ic-menu7 {
+  width: 20px;
+  height: 20px;
+  content: url(#{$img-path}ic_menu7.svg);
+}
+
+// main
+.layoutWrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  background: #F1F1F4;
+  
+  .bgHeader {
+    height: 120px;
+    width: 100%;
+    background: linear-gradient(90deg, #196BD4 0%, #558EF3 100%);
+    padding-top: 26px;
+    padding-left: 92px;
+
+    &.sbOpen {
+      padding-left: 68px;
+    }
+  }
+  
+  .mainWrap {
+    position: absolute;
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+
+
+
+    .contentWrap {
+      position: relative;
+      flex: 1;
+      // padding: 120px 0;
+      display: flex;
+      flex-direction: column;
+      
+      .headerWrap {
+        height: 80px;
+      }
+      .contentBox {
+        padding: 18px;
+        // position: absolute;
+        // top: 80px;
+        // left: 24px;
+        // width: calc(100% - 48px);
+        // height: calc(100% - 100px);
+        margin: 0 24px 20px 24px;
+        flex: 1;
+        background: #fff;
+        border-radius: 16px;
+        border: 1px solid #DBDFE9;
+        box-shadow: 0px 2px 8px 0px #4B567540;
+      }
+    }
+  }
 }

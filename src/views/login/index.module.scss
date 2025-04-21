@@ -1,45 +1,78 @@
-.container {
+.loginWrap {
   width: 100%;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #0A52BD;
 
-  .language-switch {
-    position: absolute;
-    top: 12px;
-    right: 12px;
+  background: #dbdfe9;
+
+  padding: 32px 40px;  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .loginTop {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
   }
 
-  .login-model {
-    width: 400px;
-    min-height: 260px;
-    background: #fff;
-    border-radius: 3px;
-    box-shadow: 0 2px 25px 0 rgb(0 0 0 / 30%);
-
-    .logo {
+  .loginBoxWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .loginBox {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-top: 30px;
+      justify-content: space-between;
+      width: 800px;
+      height: 535px;
+      padding: 20px;
+      background: #FFFFFF;
+      border-radius: 20px;
+      border: 1px solid #D9DDE7;
 
-      .logo-img {
-        width: 280px;
-        height: 60px;
-        background: url('../../assets/images/logo.svg') 50% no-repeat;
-        margin: 0 auto;
+      .loginInputBox {
+        flex: 1;
+        padding: 60px 40px 0 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 56px;
+        .inputWrap {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+
+
+          input {
+            height: 48px;
+            border: 1px solid #DBDFE9;
+            border-radius: 10px;
+            width: 100%;
+            padding: 0 16px;
+            font-weight: 500;
+          }
+
+          .btnLogin {
+            height: 48px;
+            border-radius: 10px;
+            background: #1A6CD5;
+            border: none;
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1;
+          }
+        }
       }
     }
+  }
 
-    .form-model {
-      padding: 30px 20px;
-    }
-
-    .oauth2-provider {
-      margin-top: 10px;
-      margin-bottom: 30px;
-    }
+  .loginBottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #99A1B7;
   }
 }

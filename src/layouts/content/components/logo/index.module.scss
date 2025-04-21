@@ -1,8 +1,12 @@
 .logo {
-  width: 280px;
-  height: 100%;
+  width: 168px;
+  height: 28px;
+  background: url('../../../../assets/images/logo_w.svg') 100% no-repeat;
+  
+  &.on {
+    background: url('../../../../assets/images/logo_b.svg') 100% no-repeat;    
+  }
 }
 
 .logo-img {
-  background: url('../../../../assets/images/logo.svg') 100% no-repeat;
 }

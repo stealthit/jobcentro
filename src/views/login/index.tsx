@@ -1,86 +1,46 @@
-import {
-  defineComponent,
-  getCurrentInstance,
-  toRefs
-} from 'vue'
+import { defineComponent } from 'vue'
 import styles from './index.module.scss'
-import {
-  NInput,
-  NButton,
-  NForm,
-  NFormItem,
-  useMessage,
-} from 'naive-ui'
-import { useForm } from './use-form'
 
 const login = defineComponent({
   name: 'login',
-  setup() {
-    window.$message = useMessage()
-    const { state } = useForm()
-
-    const trim = getCurrentInstance()?.appContext.config.globalProperties.trim
-
-    return {
-      ...toRefs(state),
-      trim
-    }
-  },
   render() {
     return (
-      <div class={styles.container}>
-        <div class={styles['login-model']}>
-          <div class={styles.logo}>
-            <div class={styles['logo-img']} />
-          </div>
-          <div
-            class={styles['form-model']}
-            v-show={true}
-          >
-            <NForm rules={this.rules} ref='loginFormRef'>
-              <NFormItem
-                label='Username'
-                label-style={{ color: 'black' }}
-                path='userName'
-              >
-                <NInput
-                  allowInput={this.trim}
-                  class='input-user-name'
-                  type='text'
-                  size='large'
-                  v-model={[this.loginForm.userName, 'value']}
-                  placeholder={'Please enter your username'}
-                  autofocus
-                />
-              </NFormItem>
-              <NFormItem
-                label={'Password'}
-                label-style={{ color: 'black' }}
-                path='userPassword'
-              >
-                <NInput
-                  allowInput={this.trim}
-                  class='input-password'
-                  type='password'
-                  size='large'
-                  v-model={[this.loginForm.userPassword, 'value']}
-                  placeholder={'Please enter your password'}
-                />
-              </NFormItem>
-            </NForm>
-            <NButton
-              class='btn-login'
-              round
-              type='info'
-              disabled={
-                !this.loginForm.userName || !this.loginForm.userPassword
-              }
-              style={{ width: '100%', background: '#0A52BD'}}
-            >
-              {'Login'}
-            </NButton>
+      <div class={styles.loginWrap}>
+        <div class={styles.loginTop}>
+          <img src='src/assets/images/top_logo.svg' alt='' />
+          <button class='btn-menual'>
+            <img class='ic-down' />
+            매뉴얼 다운로드
+          </button>
+        </div>
+        <div class={styles.loginBoxWrap}>
+          <div class={styles.loginBox}>
+            <div class={styles.loginInputBox}>
+              <div class='title-h1'>로그인</div>
+              <div class={styles.inputWrap}>
+                <div class='input-group'>
+                  {/* 필수 필드일땐  ic-tit-nece class 추가가*/}
+                  <div class='input-label ic-tit-nece'>사용자 아이디</div>
+                  <input type='text' placeholder="아이디를 입력하세요." />
+                  <div class='err-msg'>Please enter your username</div>
+                </div>
+                <div class='input-group'>
+                  <div class='input-label ic-tit-nece'>비밀번호</div>
+                  <input type='text' placeholder="비밀번호를 입력하세요."/>
+                  <div class='err-msg'>Please enter your password</div>
+                </div>
+                <button class={styles.btnLogin}>로그인</button>
+              </div>
+            </div>
+            <img
+              src='src/assets/images/img_login.svg'
+              alt=''
+              width='380'
+              height='495'
+            />
           </div>
         </div>
+        <div class={styles.loginBottom}>2025 © Jobcentro</div>
       </div>
     )
   }

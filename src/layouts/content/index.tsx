@@ -1,7 +1,8 @@
 import { defineComponent, onMounted, watch, toRefs, ref } from 'vue'
-import { NLayout, NLayoutContent, NLayoutHeader, useMessage } from 'naive-ui'
+import { useMessage } from 'naive-ui'
 import NavBar from './components/navbar'
 import SideBar from './components/sidebar'
+import Logo from './components/logo'
 import { useDataList } from './use-dataList'
 import { useRouteStore } from '@/store/route/route'
 import { useRoute } from 'vue-router'
@@ -33,7 +34,8 @@ const Content = defineComponent({
       state.sideMenuOptions =
         state.menuOptions.filter((menu: { key: string }) => menu.key === key)[0]
           ?.children || state.menuOptions
-      state.isShowSide = route.meta.showSide
+      // state.isShowSide = route.meta.showSide
+      state.isShowSide = true
     }
 
     watch(
@@ -73,32 +75,38 @@ const Content = defineComponent({
   },
   render() {
     return (
-      <NLayout style='height: 100%'>
-        <NLayoutHeader style='height: 65px'>
-          <NavBar
-            class='tab-horizontal'
-            headerMenuOptions={this.headerMenuOptions}
-            localesOptions={this.localesOptions}
-            timezoneOptions={this.timezoneOptions}
-            userDropdownOptions={this.userDropdownOptions}
-          />
-        </NLayoutHeader>
-        <NLayout has-sider position='absolute' style='top: 65px'>
-          {this.isShowSide && (
+      <div class="layoutWrap"> 
+        <div class="btn-sidebar">
+          {/* <img src="" alt="" class={this.isShowSide ? "ic-menu gray" : "ic-menu"} /> */}
+          <img src="" alt="" class="ic-menu gray" />
+        </div>
+        <div class={this.isShowSide ? "bgHeader sbOpen" : "bgHeader"}>
+          <Logo />
+        </div>                 
+        <div class="mainWrap">
+          {/* {this.isShowSide && ( */}
             <SideBar
-              sideMenuOptions={this.sideMenuOptions}
-              sideKey={this.sideKeyRef}
-            />
-          )}
-          <NLayoutContent
-            native-scrollbar={false}
-            style='padding: 16px 22px'
-            contentStyle={'height: 100%'}
-          >
-            <router-view key={this.currentRoute.fullPath} />
-          </NLayoutContent>
-        </NLayout>
-      </NLayout>
+            sideMenuOptions={this.sideMenuOptions}
+            sideKey={this.sideKeyRef}
+            isShowSide={this.isShowSide}
+              />
+          {/* )}  */}
+          <div class="contentWrap">
+            <div class="headerWrap">
+              <NavBar
+                // class='tab-horizontal'
+                // headerMenuOptions={this.headerMenuOptions}
+                // localesOptions={this.localesOptions}
+                // timezoneOptions={this.timezoneOptions}
+                // userDropdownOptions={this.userDropdownOptions}
+              />
+            </div>
+            <div class="contentBox">
+              <router-view key={this.currentRoute.fullPath} />
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 })
