@@ -35,6 +35,7 @@ const Content = defineComponent({
         state.menuOptions.filter((menu: { key: string }) => menu.key === key)[0]
           ?.children || state.menuOptions
       // state.isShowSide = route.meta.showSide
+      // 임시로 값 강제 설정해서 퍼블 작업중..
       state.isShowSide = true
     }
 

@@ -47,6 +47,7 @@ const Sidebar = defineComponent({
 
     const { handleMenuClick } = useMenuClick()
 
+    
     return { collapsedRef, defaultExpandedKeys, handleMenuClick }
   },
   render() {
@@ -56,13 +57,93 @@ const Sidebar = defineComponent({
         <div class={styles.top}>
           <Logo isShowSide />
         </div>
-        <NMenu
-          class='tab-vertical'
-          value={this.sideKey}
-          options={this.sideMenuOptions}
-          defaultExpandedKeys={this.defaultExpandedKeys}
-          onUpdateValue={this.handleMenuClick}
-        />
+        <div class={styles.menuWrap}>
+          <ul class={this.isShowSide ? "sbMenuWrap sbOpen" : "sbMenuWrap"}>
+            <li class="cur">
+              {/* 하위 depth 가 있는 경우 */}
+              <details>
+                <summary>
+                  <div class="depth2Wrap">
+                      판매 프로젝트 
+                      <img class="ic-setting-18" />
+                  </div> 
+                </summary>
+                <ul>
+                  <li>
+                    <div class="title cur">Group1</div>
+                    <ul>
+                      <li>입점사 데이터 수집</li>
+                      <li>PG사 데이터 수집</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="title">Group2</div>
+                    <ul>
+                      <li>포탈 판매금액 수집</li>
+                    </ul>
+                  </li>
+                </ul>
+              </details>
+              {/* ------------------------ */}
+            </li>
+            <li>
+              <details>
+                <summary>
+                  <div class="depth2Wrap">
+                      청구 프로젝트
+                      <img class="ic-setting-18" />
+                  </div> 
+                </summary>
+                <ul>
+                  <li>
+                    <div class="title">Group3</div>
+                    <ul>
+                      <li>청구서 발송</li>
+                      <li>우편 발송</li>
+                      <li>이메일 발송</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="title">Group4</div>
+                    <ul>
+                      <li>청구서 발송</li>
+                      <li>우편 발송</li>
+                      <li>이메일 발송</li>
+                    </ul>
+                  </li>
+                </ul>
+              </details>
+            </li>
+            <li>
+              <details>
+                <summary>
+                  <div class="depth2Wrap">
+                      인사 프로젝트
+                      <img class="ic-setting-18" />
+                  </div> 
+                </summary>
+                <ul>
+                  <li>
+                    <div class="title">Group3</div>
+                    <ul>
+                      <li>청구서 발송</li>
+                      <li>우편 발송</li>
+                      <li>이메일 발송</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <div class="title">Group4</div>
+                    <ul>
+                      <li>청구서 발송</li>
+                      <li>우편 발송</li>
+                      <li>이메일 발송</li>
+                    </ul>
+                  </li>
+                </ul>
+              </details>
+            </li>
+          </ul>
+        </div>
       </div>
     )
   }
