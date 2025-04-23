@@ -107,7 +107,7 @@ const Content = defineComponent({
                 // userDropdownOptions={this.userDropdownOptions}
               />
             </div>
-            <div class="contentBox">
+            <div class="bodyWrap">
               <router-view key={this.currentRoute.fullPath} />
             </div>
           </div>

@@ -51,6 +51,10 @@ const Navbar = defineComponent({
       { key: 'security', label: '시스템 관리', iconClass: 'ic-menu7' },
     ];
 
+    const isSetmenu1 = false
+    const isSetmenu2 = false
+    const isSetmenu3 = false
+
     return (
       <div class={styles.container}>        
         <ul class={styles.nav}>
@@ -60,15 +64,86 @@ const Navbar = defineComponent({
               class={[styles.menu, this.menuKey === item.key && styles.cur].filter(Boolean).join(' ')}
               onClick={() => this.handleMenuClick(item.key)}
             >
-              <img alt="" className={item.iconClass} />
+              <img alt="" class={item.iconClass} />
               {item.label}
             </li>
           ))}
         </ul>
-        <div class={styles.settings}>
-          <img src="" alt="" class="ic-profile" />
-          <img src="" alt="" class="ic-arr-down-12" />
-        </div>
+        <ul class={styles.settings}>
+          <li class={isSetmenu1 ? styles.sel : ""}>
+            UI 설정
+            <img src="" alt="" class={isSetmenu1 ? "ic-nav-up-12" : "ic-nav-down-12"} />
+            {/* UI 설정 창 */}
+            {isSetmenu1 &&
+              <div class={[styles.settingUIBox,"conBox"]}>
+                <div class={styles.title}>Request Settings</div>
+                <div class={styles.selGrp}>
+                  <div class={styles.label}>API Timeout</div>
+                  <select class="selectBox">
+                    <option value="">10000 Millisecond</option>
+                    <option value="">val3</option>
+                    <option value="">val4</option>
+                    <option value="">val5</option>
+                  </select>
+                </div>
+                <div class={styles.selGrp}>
+                  <div class={styles.label}>Log Auto Refresh Time</div>
+                  <select class="selectBox">
+                    <option value="">Off</option>
+                    <option value="">On</option>
+                  </select>
+                </div>
+                <div class="h-divider"></div>
+                <div class={styles.title}>Experimental Feature</div>
+                <div class={styles.selGrp}>
+                  <div class={styles.label}>Dynamic Task Component</div>
+                  
+                  <div class="toggleBox">
+                    {/* input 이 checked 일때 on 상태 */}
+                    <input type="checkbox" id="toggle" hidden /> 
+
+                    <label for="toggle" class="toggleSwitch">
+                      <span class="toggleButton"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            }
+          </li>
+          <li class={isSetmenu2 ? styles.sel : ""}>
+            Asia/Seoul
+            <img src="" alt="" class={isSetmenu2 ? "ic-nav-up-12" : "ic-nav-down-12"} />
+            {/* timeZone 설정창 */}
+            {isSetmenu2 &&
+              <div class={[styles.settingZoneBox,"conBox"]}>
+                <div class={styles.selGrp}>
+                  <div class={styles.label}>
+                    Asia/Seoul
+                    <span>Local</span>
+                  </div>
+                  <select class="selectBox" disabled>
+                    <option value="">Choose time Zone</option>
+                    <option value="">Asia/Seoul</option>
+                  </select>
+                </div>
+              </div>
+            }
+          </li>
+          <li class={isSetmenu3 ? styles.sel : ""}>
+            <img src="" alt="" class="ic-profile" />
+            <img src="" alt="" class={isSetmenu3 ? "ic-nav-up-12" : "ic-nav-down-12"} />
+            {/* 사용자 설정창 */}
+            {isSetmenu3 &&
+              <div class={[styles.settingProfBox,"conBox"]}>
+                <ul>
+                  <li><img class="ic-user-16" />Profile</li>
+                  <li><img class="ic-pwd-16" />Password</li>
+                  <li><img class="ic-logout-16" />Logout</li>
+                </ul>
+              </div>
+            }
+          </li>
+        </ul>
       </div>
     )
   }
