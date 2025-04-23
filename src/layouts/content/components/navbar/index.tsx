@@ -1,13 +1,6 @@
 import { defineComponent, PropType, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { SettingOutlined } from '@vicons/antd'
-import { NMenu, NButton, NIcon } from 'naive-ui'
 import styles from './index.module.scss'
-import Logo from '../logo'
-import Locales from '../locales'
-import Timezone from '../timezone'
-import User from '../user'
-import Theme from '../theme'
 
 const Navbar = defineComponent({
   name: 'Navbar',
@@ -38,10 +31,6 @@ const Navbar = defineComponent({
       router.push({ path: `/${key}` })
     }
 
-    const handleUISettingClick = () => {
-      router.push({ path: '/ui-setting' })
-    }
-
     watch(
       () => route.path,
       () => {
@@ -49,19 +38,34 @@ const Navbar = defineComponent({
       }
     )
 
-    return { handleMenuClick, handleUISettingClick, menuKey }
+    return { handleMenuClick, menuKey }
   },
   render() {
+    const menuItems = [
+      { key: 'home', label: 'Home', iconClass: 'ic-menu1' },
+      { key: 'projects', label: '배치 관리', iconClass: 'ic-menu2' },
+      { key: 'resource', label: '작업 리소스', iconClass: 'ic-menu3' },
+      { key: 'prediction', label: '예측', iconClass: 'ic-menu4' },
+      { key: 'report', label: '리포트', iconClass: 'ic-menu5' },
+      { key: 'monitor', label: '모니터링', iconClass: 'ic-menu6' },
+      { key: 'security', label: '시스템 관리', iconClass: 'ic-menu7' },
+    ];
+
+    console.log('menuKey', this.menuKey)
+
     return (
       <div class={styles.container}>        
         <ul class={styles.nav}>
-          <li><img alt="" class="ic-menu1" />Home</li>  
-          <li class={styles.cur}><img alt="" class="ic-menu2" />배치 관리</li>  
-          <li><img alt="" class="ic-menu3" />작업 리소스</li>  
-          <li><img alt="" class="ic-menu4" />예측</li>  
-          <li><img alt="" class="ic-menu5" />리포팅</li>  
-          <li><img alt="" class="ic-menu6" />모니터링</li>  
-          <li><img alt="" class="ic-menu7" />시스템 관리</li>  
+          {menuItems.map(item => (
+            <li
+              key={item.key}
+              class={[styles.menu, this.menuKey === item.key && styles.cur].filter(Boolean).join(' ')}
+              onClick={() => this.handleMenuClick(item.key)}
+            >
+              <img alt="" className={item.iconClass} />
+              {item.label}
+            </li>
+          ))}
         </ul>
         <div class={styles.settings}>
           <img src="" alt="" class="ic-profile" />

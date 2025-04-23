@@ -1,8 +1,15 @@
 import type { RouteRecordRaw } from 'vue-router'
 import type { Component } from 'vue'
 import utils from '@/utils'
+import projectsPage from './modules/projects'
 import resourcesPage from './modules/resources'
+import datasourcePage from './modules/datasource'
+import monitorPage from './modules/monitor'
 import securityPage from './modules/security'
+import dataQualityPage from './modules/data-quality'
+import predictionPage from './modules/prediction'
+import reportPage from './modules/report'
+
 // todo: why is it throwing cannot find module and its corresponding type, but the render is working?
 import uiSettingPage from './modules/ui-setting'
 
@@ -46,9 +53,15 @@ const basePage: RouteRecordRaw[] = [
       }
     ]
   },
+  projectsPage,
   resourcesPage,
+  datasourcePage,
+  monitorPage,
   securityPage,
-  uiSettingPage
+  dataQualityPage,
+  uiSettingPage,
+  predictionPage,
+  reportPage
 ]
 
 /**
