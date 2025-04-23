@@ -58,7 +58,8 @@ const SideMenu = defineComponent({
     return (
       <div class={styles.menuWrap}>
         <ul class={this.isShowSide ? 'sbMenuWrap sbOpen' : 'sbMenuWrap'}>
-          {this.route.name === 'home' ? undefined : this.renderMenuItems(this.options)}
+          {/* {['home'].includes(this.route.name) || /^pub/.test(this.route.name) ? undefined : this.renderMenuItems(this.options)} */}
+          {this.renderMenuItems(this.options)}
         </ul>
       </div>
     )

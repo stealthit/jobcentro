@@ -9,6 +9,7 @@ import securityPage from './modules/security'
 import dataQualityPage from './modules/data-quality'
 import predictionPage from './modules/prediction'
 import reportPage from './modules/report'
+import publishPage from './modules/publish'
 
 // todo: why is it throwing cannot find module and its corresponding type, but the render is working?
 import uiSettingPage from './modules/ui-setting'
@@ -61,7 +62,8 @@ const basePage: RouteRecordRaw[] = [
   dataQualityPage,
   uiSettingPage,
   predictionPage,
-  reportPage
+  reportPage,
+  publishPage // publish
 ]
 
 /**

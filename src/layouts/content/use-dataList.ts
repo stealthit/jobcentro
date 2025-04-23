@@ -63,6 +63,31 @@ export function useDataList() {
         label: () => h(NEllipsis, null, '홈'),
         key: 'home',
         icon: renderIcon(HomeOutlined)
+        
+        /** 임시 퍼블 메뉴 시작 */
+        , children: [
+          {
+            label: 'Pub1',
+            key: '/publish/pub1',
+          },
+          {
+            label: 'Pub2',
+            key: '/publish/pub2',
+          },
+          {
+            label: 'Pub3',
+            key: '/publish/pub3',
+          },
+          {
+            label: 'Pub4',
+            key: '/publish/pub4',
+          },
+          {
+            label: 'Pub5',
+            key: '/publish/pub5',
+          },
+        ]
+        /** 임시 퍼블 메뉴 끝 */
       },
       {
         label: () => h(NEllipsis, null, '프로젝트'),
