@@ -1,0 +1,22 @@
+.container {
+    z-index: 2;
+    width: 260px;
+    background: #fff;
+    border-right: 1px solid #DBDFE9;
+    box-shadow: 2px 0px 8px 0px #4B567540;
+  
+    .top {
+      padding-left: 68px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+    }
+  
+    &:not(.open) {
+      width: 68px;
+    }
+  
+    .menuWrap {
+  
+    }
+  }

@@ -39,6 +39,10 @@ const Content = defineComponent({
       state.isShowSide = true
     }
 
+    const toggleSideMenu = () => {
+      state.isShowSide = !state.isShowSide
+    }
+
     watch(
       () => route.path,
       () => {
@@ -71,13 +75,14 @@ const Content = defineComponent({
       ...toRefs(state),
       changeMenuOption,
       sideKeyRef,
-      currentRoute: route
+      currentRoute: route,
+      toggleSideMenu
     }
   },
   render() {
     return (
       <div class="layoutWrap"> 
-        <div class="btn-sidebar">
+        <div class="btn-sidebar" onClick={this.toggleSideMenu}>
           {/* <img src="" alt="" class={this.isShowSide ? "ic-menu gray" : "ic-menu"} /> */}
           <img src="" alt="" class="ic-menu gray" />
         </div>

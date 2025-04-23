@@ -56,8 +56,8 @@ export function useDataList() {
   })
 
   const changeMenuOption = (state: any) => {
-    const projectCode = route.params.projectCode || ''
-    const projectName = route.query.projectName || ''
+    const projectCode = route.params.projectCode || 'TestProjectCode'
+    const projectName = route.query.projectName || '테스트'
     state.menuOptions = [
       {
         label: () => h(NEllipsis, null, '홈'),

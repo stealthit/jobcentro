@@ -17,6 +17,7 @@ export default {
       component: components['resource-file'],
       meta: {
         activeMenu: 'resource',
+
         showSide: true,
         auth: []
       }
@@ -28,6 +29,7 @@ export default {
       meta: {
         activeMenu: 'resource',
         activeSide: '/resource/file-manage',
+        activeSideMenu: 'function-manage',
         showSide: true,
         auth: []
       }
@@ -39,6 +41,7 @@ export default {
       meta: {
         activeMenu: 'resource',
         activeSide: '/resource/file-manage',
+        activeSideMenu: 'function-manage',
         showSide: true,
         auth: []
       }
@@ -50,6 +53,7 @@ export default {
       meta: {
         activeMenu: 'resource',
         activeSide: '/resource/file-manage',
+        activeSideMenu: 'function-manage',
         showSide: true,
         auth: []
       }
@@ -61,6 +65,7 @@ export default {
       meta: {
         activeMenu: 'resource',
         activeSide: '/resource/file-manage',
+        activeSideMenu: 'function-manage',
         showSide: true,
         auth: []
       }
@@ -72,6 +77,7 @@ export default {
       meta: {
         activeMenu: 'resource',
         activeSide: '/resource/file-manage',
+        activeSideMenu: 'function-manage',
         showSide: true,
         auth: []
       }
@@ -82,6 +88,7 @@ export default {
       component: components['resource-udf-resource'],
       meta: {
         activeMenu: 'resource',
+        activeSideMenu: 'udf-manage',
         showSide: true,
         auth: []
       }
@@ -93,6 +100,7 @@ export default {
       meta: {
         activeMenu: 'resource',
         activeSide: '/resource/resource-manage',
+        activeSideMenu: 'udf-manage',
         showSide: true,
         auth: []
       }
@@ -103,6 +111,7 @@ export default {
       component: components['resource-udf-function'],
       meta: {
         activeMenu: 'resource',
+        activeSideMenu: 'udf-manage',
         showSide: true,
         auth: []
       }
@@ -113,6 +122,7 @@ export default {
       component: components['resource-task-group-option'],
       meta: {
         activeMenu: 'resource',
+        activeSideMenu: 'task-group',
         showSide: true,
         auth: []
       }
@@ -123,6 +133,7 @@ export default {
       component: components['resource-task-group-queue'],
       meta: {
         activeMenu: 'resource',
+        activeSideMenu: 'task-group',
         showSide: true,
         auth: []
       }

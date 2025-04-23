@@ -51,8 +51,6 @@ const Navbar = defineComponent({
       { key: 'security', label: '시스템 관리', iconClass: 'ic-menu7' },
     ];
 
-    console.log('menuKey', this.menuKey)
-
     return (
       <div class={styles.container}>        
         <ul class={styles.nav}>

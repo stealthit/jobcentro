@@ -11,12 +11,14 @@ export default {
   redirect: { name: 'projects-list' },
   component: () => import('@/layouts/content'),
   children: [
+    // Project 
     {
       path: '/projects/list',
       name: 'projects-list',
       component: components['projects-list'],
       meta: {
         activeMenu: 'projects',
+        activeSideMenu: 'projects',
         showSide: false,
         auth: []
       }
@@ -27,6 +29,7 @@ export default {
       component: components['projects-overview'],
       meta: {
         activeMenu: 'projects',
+        activeSideMenu: 'projects',
         showSide: true,
         auth: []
       }
@@ -37,6 +40,7 @@ export default {
       component: components['projects-parameter'],
       meta: {
         activeMenu: 'projects',
+        activeSideMenu: 'projects',
         showSide: true,
         auth: []
       }
@@ -47,16 +51,19 @@ export default {
       component: components['projects-preference'],
       meta: {
         activeMenu: 'projects',
+        activeSideMenu: 'projects',
         showSide: true,
         auth: []
       }
     },
+    // 워크플로우
     {
       path: '/projects/:projectCode/workflow/relation',
       name: 'workflow-relation',
       component: components['projects-workflow-relation'],
       meta: {
         activeMenu: 'projects',
+        activeSideMenu: 'workflow',
         showSide: true,
         auth: []
       }
@@ -67,6 +74,7 @@ export default {
       component: components['projects-workflow-definition'],
       meta: {
         activeMenu: 'projects',
+        activeSideMenu: 'workflow',
         showSide: true,
         auth: []
       }
@@ -78,6 +86,7 @@ export default {
       meta: {
         activeMenu: 'projects',
         activeSide: '/projects/:projectCode/workflow-definition',
+        activeSideMenu: 'workflow',
         showSide: true,
         auth: []
       }
@@ -89,6 +98,7 @@ export default {
       meta: {
         activeMenu: 'projects',
         activeSide: '/projects/:projectCode/workflow-definition',
+        activeSideMenu: 'workflow',
         showSide: true,
         auth: []
       }
@@ -100,6 +110,7 @@ export default {
       meta: {
         activeMenu: 'projects',
         activeSide: '/projects/:projectCode/workflow-definition',
+        activeSideMenu: 'workflow',
         showSide: true,
         auth: []
       }
@@ -110,6 +121,7 @@ export default {
       component: components['projects-workflow-timing'],
       meta: {
         activeMenu: 'projects',
+        activeSideMenu: 'workflow',
         showSide: true,
         auth: []
       }
@@ -120,6 +132,7 @@ export default {
       component: components['projects-workflow-instance'],
       meta: {
         activeMenu: 'projects',
+        activeSideMenu: 'workflow',
         showSide: true,
         auth: []
       }
@@ -131,6 +144,7 @@ export default {
       meta: {
         activeMenu: 'projects',
         activeSide: '/projects/:projectCode/workflow/instances',
+        activeSideMenu: 'workflow',
         showSide: true,
         auth: []
       }
@@ -142,6 +156,7 @@ export default {
       meta: {
         activeMenu: 'projects',
         activeSide: '/projects/:projectCode/workflow/instances',
+        activeSideMenu: 'workflow',
         showSide: true,
         auth: []
       }
@@ -152,6 +167,7 @@ export default {
       component: components['projects-task-definition'],
       meta: {
         activeMenu: 'projects',
+        activeSideMenu: 'task',
         showSide: true,
         auth: []
       }
@@ -162,6 +178,7 @@ export default {
       component: components['projects-task-instance'],
       meta: {
         activeMenu: 'projects',
+        activeSideMenu: 'task',
         showSide: true,
         auth: []
       }
@@ -173,6 +190,7 @@ export default {
       meta: {
         activeMenu: 'projects',
         activeSide: '/projects/:projectCode/workflow-definition',
+        activeSideMenu: 'task',
         showSide: true,
         auth: []
       }

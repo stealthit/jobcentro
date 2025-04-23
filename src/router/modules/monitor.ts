@@ -18,6 +18,7 @@ export default {
       component: components['monitor-servers-master'],
       meta: {
         activeMenu: 'monitor',
+        activeSideMenu: 'service-manage',
         showSide: true,
         auth: []
       }
@@ -28,6 +29,7 @@ export default {
       component: components['monitor-servers-worker'],
       meta: {
         activeMenu: 'monitor',
+        activeSideMenu: 'service-manage',
         showSide: true,
         auth: []
       }
@@ -38,6 +40,7 @@ export default {
       component: components['monitor-servers-alert_server'],
       meta: {
         activeMenu: 'monitor',
+        activeSideMenu: 'service-manage',
         showSide: true,
         auth: []
       }
@@ -48,6 +51,7 @@ export default {
       component: components['monitor-servers-db'],
       meta: {
         activeMenu: 'monitor',
+        activeSideMenu: 'service-manage',
         showSide: true,
         auth: []
       }
@@ -58,6 +62,7 @@ export default {
       component: components['monitor-statistics-statistics'],
       meta: {
         activeMenu: 'monitor',
+        activeSideMenu: 'statistical-manage',
         showSide: true,
         auth: []
       }
@@ -68,6 +73,7 @@ export default {
       component: components['monitor-statistics-audit-log'],
       meta: {
         activeMenu: 'monitor',
+        activeSideMenu: 'statistical-manage',
         showSide: true,
         auth: []
       }

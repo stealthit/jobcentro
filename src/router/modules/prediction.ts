@@ -18,6 +18,7 @@ export default {
       component: components['prediction-day-schedule-schedule-info'],
       meta: {
         activeMenu: 'prediction',
+        activeSideMenu: 'day-schedule',
         showSide: true,
         auth: []
       }
@@ -28,6 +29,7 @@ export default {
       component: components['prediction-day-schedule-time-status'],
       meta: {
         activeMenu: 'prediction',
+        activeSideMenu: 'day-schedule',
         showSide: true,
         auth: []
       }
@@ -39,6 +41,7 @@ export default {
       component: components['prediction-month-schedule'],
       meta: {
         activeMenu: 'prediction',
+        activeSideMenu: 'month-schedule',
         showSide: true,
         auth: []
       }
