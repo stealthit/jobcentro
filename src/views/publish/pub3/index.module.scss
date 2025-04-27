@@ -1,6 +1,9 @@
 .container {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 16px;
-  background-color: #f9f9f9;
+  
+  .nodeBox {
+    flex: 1;
+  }
 }

@@ -30,11 +30,11 @@ const publish1 = defineComponent({
                     <div class="titleWrap"> 
                         <div class="title">리스트</div>
                         <div class={styles.btnGrp}>
-                            <button class="btnType1"><img class="ic-active-16" />활성</button>
-                            <button class="btnType1"><img class="ic-inactive-16" />비활성</button>
-                            <button class="btnType1"><img class="ic-modify-16" />수정</button>
-                            <button class="btnType1"><img class="ic-delete-16" />삭제</button>
-                            <button class="btnType1"><img class="ic-change-16" />워커 그룹 변경</button>
+                            <button class="btnType1 btn-active">활성</button>
+                            <button class="btnType1 btn-inactive">비활성</button>
+                            <button class="btnType1 btn-modify">수정</button>
+                            <button class="btnType1 btn-delete">삭제</button>
+                            <button class="btnType1 btn-change">워커 그룹 변경</button>
                         </div>
                     </div>
                     <div class="tableWrap">

@@ -52,6 +52,31 @@ $cl-error: #F24A4A;
 //header
 $header-bg: #1a75ff;
 
+// function
+@mixin create_btn_in_ic_16($name) {
+  &::before {
+    width: 16px;
+    height: 16px;
+    content: url(#{$img-path}ic_#{$name}_16.svg);
+  }
+}
+
+@mixin create_btn_icon($name) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 18px;
+  border: 1px solid #DBDFE9;
+  &::before {
+    width: 16px;
+    height: 16px;
+    content: url(#{$img-path}ic_#{$name}_16.svg);
+  }
+}
+
+
 * {
   outline: 0;
   box-sizing: border-box;
@@ -139,6 +164,33 @@ ol, details, summary {
   list-style: none;
 }
 
+button {
+  text-transform: none; 
+  cursor: pointer; 
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  appearance: none; 
+  border: none;
+  font-family: inherit; font-size: 100%; line-height: inherit; color: inherit; margin: 0; padding: 0;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] { -webkit-appearance: button; background-color: transparent; background-image: none; } 
+:-moz-focusring { outline: auto; } 
+:-moz-ui-invalid { box-shadow: none; } 
+progress { vertical-align: baseline; } 
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button { height: auto; } 
+[type="search"] { -webkit-appearance: textfield; outline-offset: -2px; } 
+::-webkit-search-decoration { -webkit-appearance: none; } 
+::-webkit-file-upload-button { -webkit-appearance: button; font: inherit; } 
+summary { display: list-item; } 
+button,
+[role="button"] { cursor: pointer; } 
+:disabled { cursor: default; } 
+
 button.btnType1 {
   cursor: pointer;
   height: 32px;
@@ -165,6 +217,21 @@ select.selectBox {
 
   appearance:none;
   background:url(#{$img-path}ic_select_down.svg) no-repeat right 12px center;
+}
+
+input[type="checkbox"]{
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: url(#{$img-path}check.svg) no-repeat center;
+  cursor: pointer; 
+
+  &:checked {
+    background: url(#{$img-path}check_ck.svg) no-repeat center;
+  }
+  &:disabled {
+    background: url(#{$img-path}check_dis.svg) no-repeat center;
+  }
 }
 
 // table
@@ -197,6 +264,36 @@ select.selectBox {
     tbody {
       tr {
         height: 50px;
+        td {
+          text-align: center;
+          border-bottom: 1px solid #D9DDE7;
+
+          .status {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 24px;
+            border-radius: 20px;
+            &.on {
+              background: #D4FBC9;
+              color: #239C02;
+            }
+            &.off {
+              background: #F1F1F4;
+              color: #78829D;
+
+            }
+            &.fail {
+              background: #FFDFDF;    
+              color: #C92F2F;          
+            }
+          }     
+          
+          .btnGroup {
+            display: inline-flex;
+            gap: 8px;
+          }
+        }
       }
     }
   }
@@ -312,6 +409,7 @@ select.selectBox {
   background: #DBDFE9;
 }
 // control
+// button
 .btn-menual {
   cursor: pointer;
   display: flex;
@@ -336,6 +434,60 @@ select.selectBox {
   z-index: 10;
   top: 30px;
   left: 24px;
+}
+
+// 아이콘이 들어간 버튼 정의
+.btn-active {  
+  @include create_btn_in_ic_16(active);
+}
+.btn-inactive {
+  @include create_btn_in_ic_16(inactive);
+}
+.btn-modify {
+  @include create_btn_in_ic_16(modify);
+}
+.btn-delete {
+  @include create_btn_in_ic_16(delete); 
+}
+.btn-change {
+  @include create_btn_in_ic_16(change);
+}
+.btn-start {
+  @include create_btn_in_ic_16(start); 
+}
+.btn-schedule {
+  @include create_btn_in_ic_16(schedule);  
+}
+.btn-copy {
+  @include create_btn_in_ic_16(copy); 
+}
+.btn-treeview {
+  @include create_btn_in_ic_16(treeview); 
+}
+.btn-export {
+  @include create_btn_in_ic_16(export); 
+}
+.btn-version {
+  @include create_btn_in_ic_16(version); 
+}
+.btn-restart {
+  @include create_btn_in_ic_16(restart); 
+}
+.btn-recover {
+  @include create_btn_in_ic_16(recover); 
+}
+.btn-pause {
+  @include create_btn_in_ic_16(pause); 
+}
+.btn-stop {
+  @include create_btn_in_ic_16(stop); 
+}
+ 
+.btn-ic-info {
+  @include create_btn_icon(info);
+}
+.btn-ic-trash {
+  @include create_btn_icon(trash);
 }
 
 .input-group {
@@ -778,7 +930,7 @@ select.selectBox {
       .headerWrap {
         height: 80px;
       }
-      .bodyWrap {
+      .bodyWrap {       
         // position: absolute;
         // top: 80px;
         // left: 24px;
@@ -795,5 +947,109 @@ select.selectBox {
         }
       }
     }
+  }
+}
+
+
+// modal
+// background
+.modalBg {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+// modal layout
+.modalWrap {
+  position: relative;
+  padding: 20px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  .modalTop {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    .title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #071437;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      &::before {
+        content: '';
+        display: block;
+        width: 5px;
+        height: 5px;
+        background: #1A6CD5;
+      }
+    }
+    .close {
+      position: absolute;
+      top: 25px;
+      right: 20px;
+      &::before {
+        display: block;
+        width: 22px;
+        height: 22px;
+        content: url(#{$img-path}ic_popup_close.svg);
+      }
+    }
+  }
+  .modalBody {
+    input[type="text"] {
+      height: 36px;
+      border-radius: 10px;
+      border: 1px solid #DBDFE9;
+      padding: 0 12px;
+    }
+  }
+  .modalBottom {
+    height: 36px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 8px;
+    .modalBtnCancel {
+      height: 32px;
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 18px;
+      border: 1px solid #DBDFE9;
+      background: #F4F7F6;
+      line-height: 1;
+      color: #4B5675;
+
+      &::before {
+        width: 16px;
+        height: 16px;
+        content: url(#{$img-path}ic_cancel_16.svg);
+      } 
+    }
+    .modalBtnConfirm {
+      height: 32px;
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 18px;
+      background: #04A3BB;
+      line-height: 1;
+      color: #fff;
+
+      &::before {
+        width: 16px;
+        height: 16px;
+        content: url(#{$img-path}ic_confirm_w_16.svg);
+      }
+    }
+    
   }
 }
