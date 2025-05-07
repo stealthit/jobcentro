@@ -165,13 +165,16 @@ ol, details, summary {
 }
 
 button,
+input,
 textarea {
   text-transform: none; 
-  cursor: pointer; 
   -webkit-appearance: none; 
   -moz-appearance: none; 
   appearance: none; 
   border: none;
+  &::placeholder {
+    color: #C4CAD8;
+  }
   font-family: inherit; font-size: 100%; font-weight: 500; line-height: inherit; color: inherit; margin: 0; padding: 0;
 }
 // textarea { resize: none;}
@@ -192,6 +195,29 @@ summary { display: list-item; }
 button,
 [role="button"] { cursor: pointer; } 
 :disabled { cursor: default; } 
+
+input[type="time"] {
+  // &::-webkit-calendar-picker-indicator {
+  //   display: none;
+  // }
+  font-weight: 500;
+  height: 36px; 
+  font-weight: 500;
+  font-size: 14px;
+  color: #4B5675;
+  border: 1px solid #DBDFE9;
+  border-radius: 10px;
+  padding: 0 12px;
+
+
+  // &::-webkit-calendar-picker-indicator {
+  //   // width: 150px;
+  //   position: absolute;
+  //   right: -105px;
+  //   background: url(#{$img-path}ic_calendar_16.svg);
+  //   background-repeat: no-repeat;
+  // }
+}
 
 button.btnType1 {
   cursor: pointer;
@@ -266,10 +292,13 @@ select.selectBox {
   color: #4B5675;
   border-radius: 10px;
   border: 1px solid #DBDFE9;
-  padding: 0 12px;
+  padding: 0 36px 0 12px;
 
   appearance:none;
   background:url(#{$img-path}ic_select_down.svg) no-repeat right 12px center;
+
+  &:invalid {color: #C4CAD8;}
+  
 }
 
 input[type="checkbox"]{
@@ -315,6 +344,11 @@ input[type="radio"]{
 
   &:checked {
     background: url(#{$img-path}radio_ck.svg) no-repeat center;
+
+    & + span {
+      font-weight: 700;
+      color: #04A3BB;
+    }
   }
 
   &:disabled {
@@ -324,6 +358,11 @@ input[type="radio"]{
     outline: none;
     content: none;
     background: url(#{$img-path}radio_dis.svg) no-repeat center;
+
+    & + span {
+      font-weight: 500;
+      color: #99A1B7;
+    }
   }
   
   &:not(:checked,:disabled):hover {
@@ -337,9 +376,92 @@ input[type="radio"]{
 
   &:checked:disabled {
     background: url(#{$img-path}radio_dis_ck.svg) no-repeat center;
+
+    & + span {
+      font-weight: 700;
+      color: #CEE4E7;
+    }
   }
 }
 
+.rdbtn-group {
+  display: flex; 
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  .radioStyle {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 32px;
+    padding: 0 12px;
+    border-radius: 16px;
+    border: 1px solid #DBDFE9;
+    background: #F4F7F6;
+
+    input[type="radio"] {
+      width: 12px;
+      height: 12px;
+      background-size: contain;                 
+    }
+
+    &:has([type="radio"]:checked) {
+      background: #F0F5FF;
+      border: 1px solid #04A3BB;
+            
+      &:has([type="radio"]:disabled) {
+        border: 1px solid #CEE4E7;
+      }      
+    }      
+  }
+}
+
+.ckbtnStyle {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 16px;
+  border: 1px solid #DBDFE9;
+  background: #F4F7F6;
+
+  input[type="checkbox"] {
+    width: 12px;
+    height: 12px;
+    background: url(#{$img-path}ic_uncheck_12.svg) no-repeat center;
+
+ 
+    &:not(:checked,:disabled):hover {
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      -o-appearance: none;
+      outline: none;
+      content: none;
+      background: url(#{$img-path}ic_uncheck_12.svg) no-repeat center;
+    }
+
+    & + span {line-height: 1;}
+  }
+
+  &:has([type="checkbox"]:checked) {
+    background: #F0F5FF;
+    border: 1px solid #04A3BB;
+    input[type="checkbox"] {
+      background: url(#{$img-path}ic_check_12.svg) no-repeat center;  
+      
+      & + span {
+        color: #04A3BB;
+      }
+    }
+  }
+
+}
 // table
 .tableWrap {
   display: flex;
@@ -444,6 +566,9 @@ input[type="radio"]{
 
 // toggle switch 
 .toggleBox {
+  height: 36px;
+  display: flex;
+  align-items: center;
   .toggleSwitch {
     width: 46px;
     height: 26px;
@@ -466,11 +591,11 @@ input[type="radio"]{
     background: #fff;
   }
   
-  #toggle:checked ~ .toggleSwitch {
+  .ck-toggle:checked ~ .toggleSwitch {
     background: #04A3BB;
   }
   
-  #toggle:checked ~ .toggleSwitch .toggleButton {
+  .ck-toggle:checked ~ .toggleSwitch .toggleButton {
     left: calc(100% - 22px);
     // background: #fff;
   }
@@ -561,7 +686,7 @@ input[type="radio"]{
   @include create_btn_in_ic_16(change);
 }
 .btn-start {
-  @include create_btn_in_ic_16(start); 
+  @include create_btn_in_ic_16(start);                      
 }
 .btn-schedule {
   @include create_btn_in_ic_16(schedule);  
@@ -602,6 +727,22 @@ input[type="radio"]{
 .btn-down {
   @include create_btn_in_ic_16(down); 
 }
+.btn-save {
+  @include create_btn_in_ic_16(save); 
+}
+.btn-format {
+  @include create_btn_in_ic_16(format); 
+}
+.btn-close2 {
+  @include create_btn_in_ic_16(close2); 
+}
+.btn-saved {
+  @include create_btn_in_ic_16(saved); 
+}
+.btn-search {
+  @include create_btn_in_ic_16(search); 
+}
+
 
 .btn-ic-info {
   @include create_btn_icon(info);
@@ -611,6 +752,31 @@ input[type="radio"]{
 }
 .btn-ic-add {
   @include create_btn_icon(add);
+}
+.btn-ic-switch1 {
+  @include create_btn_icon(switch1);
+}
+.btn-ic-switch2 {
+  @include create_btn_icon(switch2);
+}
+.btn-ic-calendar {
+  width: 16px;
+  height: 16px;
+  background: url(#{$img-path}ic_calendar_16.svg);
+}
+.btn-ic-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 18px;
+  background: #04A3BB;
+  &::before {
+    width: 16px;
+    height: 16px;
+    content: url(#{$img-path}ic_search_w_16.svg);
+  }
 }
 // --- end ---------------------
 
@@ -625,6 +791,38 @@ input[type="radio"]{
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.mul-calendar-group {
+  display: flex;
+  border: 1px solid #DBDFE9;
+  border-radius: 10px;
+  padding: 0 12px;  
+
+  .data-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    input[type="datetime-local"] {
+      // &::-webkit-calendar-picker-indicator {
+      //   display: none;
+      // }
+      font-weight: 500;
+      height: 36px;
+      font-weight: 500;
+      font-size: 14px;
+      color: #4B5675;
+      border: none;
+  
+      &::-webkit-calendar-picker-indicator {
+        width: 150px;
+        position: absolute;
+        right: -105px;
+        background: url(#{$img-path}ic_calendar_16.svg);
+        background-repeat: no-repeat;
+      }
+    }
+  }
 }
 
 .conBox {
@@ -645,7 +843,10 @@ input[type="radio"]{
 .flex-1 {
   flex: 1;
 }
-
+.h-field {
+  display: flex;
+  gap: 16px;
+}
 .contentBox {
   display: flex;
   flex-direction: column;
@@ -672,6 +873,68 @@ input[type="radio"]{
       }
     }
   }
+}
+
+.pick-date-group {
+  .title-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 26px;
+    font-size: 13px;
+    font-weight: 500;
+    &:has(.ck-toggle:checked) {
+      & + .sel-data-box {
+        margin-top: 8px;        
+        overflow: hidden;
+        transition: all 0.6s ease-out;
+        max-height: 300px;
+
+        &.month {
+          max-height: 106px;
+        }
+        &.week {
+          max-height: 69px;
+        }
+        &.day {
+          max-height: 254px;
+        }
+      }
+    }
+
+    .label-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      .sel-all {
+        text-decoration: underline;
+        color: #04A3BB;
+      }
+    }
+    .toggle-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+  .sel-data-box {
+    margin-top: 0px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease-out;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    .ckbtnStyle {
+      width: 67.66px;
+    }
+  }
+}
+
+.searchBox {
+  display: flex;
+  gap: 16px;
+  align-items: center;
 }
 // images
 .ic-down {
@@ -1205,7 +1468,7 @@ input[type="radio"]{
 }
 // modal layout
 .modalWrap {
-  max-height: 100vh;
+  max-height: calc(100% - 40px);
   position: relative;
   padding: 20px;
   border-radius: 16px;
@@ -1244,21 +1507,42 @@ input[type="radio"]{
       content: url(#{$img-path}ic_popup_close.svg);
     }
   }
+
+  .help {
+    position: absolute;
+    top: 25px;
+    right: 50px;
+    &::before {
+      display: block;
+      width: 22px;
+      height: 22px;
+      content: url(#{$img-path}ic_popup_help.svg);
+    }
+  }
+  .gap-8 {gap: 8px;}
   .modalBody {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    overflow: auto;
     .input-group {
+      gap: 8px;
       .input-label {
+        height: 16px;
         font-size: 13px;
       }
+      span.text {
+        display: flex;
+        align-items: center;
+        height: 36px;
+      }
     }
-    input[type="text"] {
+    input[type="text"],input[type="number"] {
       font-weight: 500;
       height: 36px;
       border-radius: 10px;
       border: 1px solid #DBDFE9;
-      padding: 0 12px;
+      padding: 0 12px;      
     }
     textarea {
       min-height: 62px;

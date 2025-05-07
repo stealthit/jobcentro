@@ -15,10 +15,20 @@ const RunPrgModal = defineComponent({
           <div className="input-group">
             <div className="input-label">워크플로우</div>
             <input type='text' value="청구데이터 수집" />
-          </div> 
+          </div>
           <div className="input-group">
             <div className="input-label">실패 시 전략</div>
-          </div>           
+            <div class="rdbtn-group">
+              <label class='radioStyle'>
+                <input type="radio" name="radio" checked />
+                <span>재시도</span>
+              </label> 
+              <label class='radioStyle'>
+                <input type="radio" name="radio" />
+                <span>종료</span>
+              </label>              
+            </div>
+          </div>
           <div className="input-group">
             <div className="input-label">워크플로우 우선순위</div>
             <select class="selectBox">

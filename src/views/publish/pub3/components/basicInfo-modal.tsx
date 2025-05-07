@@ -24,7 +24,7 @@ const BasicInfoModal = defineComponent({
             <div className="input-label">Timeout Alert</div>
             <div class="toggleBox">
               {/* input 이 checked 일때 on 상태 */}
-              <input type="checkbox" id="toggle" hidden /> 
+              <input type="checkbox" id="toggle"  class="ck-toggle" hidden /> 
 
               <label for="toggle" class="toggleSwitch">
                 <span class="toggleButton"></span>

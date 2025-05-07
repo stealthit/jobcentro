@@ -4,6 +4,19 @@ import VersionModal from './components/version-modal'
 import BasicInfoModal from './components/basicInfo-modal'
 import AlertModal from './components/alert-modal'
 import RunPrgModal from './components/runprg-modal'
+import ScheduleModal from './components/schedule-modal'
+import ScheDateModal from './components/schedate-modal'
+import ScheTimeModal from './components/schetime-modal'
+import SetAlarmModal from './components/setalarm-modal'
+import RegGroupModal from './components/reggroup-modal'
+import TaskCommonModal from './components/taskcommon-modal'
+import TaskSQLModal from './components/tasksql-modal'
+import TaskSSHModal from './components/taskssh-modal'
+import TaskHTTPModal from './components/taskhttp-modal'
+import TaskJavaModal from './components/taskjava-modal'
+import TaskPythonModal from './components/taskpython-modal'
+import TaskSubProcessModal from './components/tasksubprocess-modal'
+import TaskSwitchModal from './components/taskswitch-modal'
 
 const publish3 = defineComponent({
     name: 'publish-pub3',
@@ -12,8 +25,22 @@ const publish3 = defineComponent({
         const modal1 = false   //15p_버전정보
         const modal2 = false   //16p_Basic Infomation 
         const modal3 = false    //Alert 팝업 
-        const modal4 = true    //22p_WorkFlow 실행
-        
+        const modal4 = false    //22p_WorkFlow 실행
+        const modal5 = false     //24p 스케쥴 추가
+        const modal6 = false     //24p_스케줄 추가 > 스케줄 일자
+        const modal7 = false     //24p_스케줄 추가 > 스케줄 시간
+        const modal8 = false     //26p_알림 설정
+        const modal9 = false     //27p_그룹추가/수정
+        const modal10 = false     //29p_워크플로우 Task -공통
+        const modal11 = false     //30p_워크플로우 Task -SQL
+        const modal12 = false     //31p_워크플로우 Task – Shell Script 실행
+        const modal13 = false     //32p_워크플로우 Task – HTTP
+        const modal14 = false     //33p_워크플로우 Task – Java
+        const modal15 = false     //34p_워크플로우 Task – Python
+        const modal16 = false     //35p_워크플로우 Task – SubProcess
+        const modal17 = false     //36p_워크플로우 Task – Conditions - 퍼블 작업 대기중
+        const modal18 = true     //37p_워크플로우 Task – Switch
+       
         
         const menu1 = false
         const menu2 = false
@@ -21,6 +48,40 @@ const publish3 = defineComponent({
         return (
             <div class={styles.container}>
                 <div class={[styles.nodeBox,"contentBox"]}>
+                    <div class="titleWrap"> 
+                        <div className="h-flex">
+                            <div class="title">Switch</div>
+                            <div class={styles.btnGrp}>
+                                <button className="btn-ic-switch1"></button>
+                                <button className="btn-ic-switch2"></button>
+                            </div>
+                        </div>
+                        <div className="h-flex">
+                            <div class={styles.btnGrp}>
+                                <button class="btnType1 btn-search">노드찾기</button>
+                                <button class="btnType1 btn-saved">이미지로 저장</button>
+                                <button class="btnType1 btn-delete">노드삭제</button>
+                                <button class="btnType1 btn-inactive">전체화면</button>
+                                <button class="btnType1 btn-format">포맷</button>
+                                <button class="btnType1 btn-version">버전정보</button>
+                                <button class="btnType1 btn-save">저장</button>
+                                <button cl        ass="btnType1 btn-close2">닫기</button>
+                            </div>
+                            <div class="searchBox">
+                                <select class="selectBox">
+                                    <option value="">고객사용금액정보 개더링</option>
+                                    <option value="">val1</option>
+                                    <option value="">val2</option>
+                                    <option value="">val3</option>
+                                    <option value="">val4</option>
+                                </select>
+                                <button class="btn-ic-search"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class={styles.workflowBox}>
+                        워크플로우 영역
+                    </div>
                 </div>
 
                 {/* 메뉴리스트  */}
@@ -76,6 +137,46 @@ const publish3 = defineComponent({
                     {modal4 &&
                         <RunPrgModal></RunPrgModal>
                     }
+                    {modal5 &&
+                        <ScheduleModal></ScheduleModal>
+                    }
+                    {modal6 &&
+                        <ScheDateModal></ScheDateModal>
+                    }
+                    {modal7 &&
+                        <ScheTimeModal></ScheTimeModal>
+                    }
+                    {modal8 &&
+                        <SetAlarmModal></SetAlarmModal>
+                    }
+                    {modal9 &&
+                        <RegGroupModal></RegGroupModal>
+                    }
+                    {modal10 &&
+                        <TaskCommonModal></TaskCommonModal>
+                    }
+                    {modal11 &&
+                        <TaskSQLModal></TaskSQLModal>
+                    }
+                    {modal12 &&
+                        <TaskSSHModal></TaskSSHModal>
+                    }
+                    {modal13 &&
+                        <TaskHTTPModal></TaskHTTPModal>
+                    }
+                    {modal14 &&
+                        <TaskJavaModal></TaskJavaModal>
+                    }
+                    {modal15 &&
+                        <TaskPythonModal></TaskPythonModal>
+                    }
+                    {modal16 &&
+                        <TaskSubProcessModal></TaskSubProcessModal>
+                    }
+                    {modal18 &&
+                        <TaskSwitchModal></TaskSwitchModal>
+                    }
+
                 </div>
                 }
             </div>

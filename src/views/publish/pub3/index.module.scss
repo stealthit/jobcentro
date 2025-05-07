@@ -5,8 +5,17 @@
   
   .nodeBox {
     flex: 1;
+    .btnGrp {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .workflowBox {
+      flex: 1;
+    }
   } 
-  
+
   // 메뉴리스트
   ul.menuBox {
     min-width: 200px;
