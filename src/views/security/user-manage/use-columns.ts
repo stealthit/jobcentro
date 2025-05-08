@@ -1,22 +1,4 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { h, ref, watch, onMounted } from 'vue'
-import { useI18n } from 'vue-i18n'
 import {
   NSpace,
   NTooltip,
@@ -42,8 +24,6 @@ import { useUserStore } from '@/store/user/user'
 import { UserInfoRes } from './types'
 
 export function useColumns(onCallback: Function) {
-  const { t } = useI18n()
-
   const userStore = useUserStore()
   const userInfo = userStore.getUserInfo as UserInfoRes
   const IS_ADMIN = userInfo.userType === 'ADMIN_USER'
@@ -56,48 +36,48 @@ export function useColumns(onCallback: Function) {
   const createColumns = () => {
     const columns = [
       {
-        title: '#',
+        title: 'No',
         key: 'index',
         render: (rowData: InternalRowData, rowIndex: number) => rowIndex + 1,
         ...COLUMN_WIDTH_CONFIG['index']
       },
       {
-        title: t('security.user.username'),
+        title: '사용자명',
         key: 'userName',
         className: 'name',
         ...COLUMN_WIDTH_CONFIG['userName']
       },
       {
-        title: t('security.user.user_type'),
+        title: '사용자 유형',
         key: 'userType',
         render: (rowData: InternalRowData) =>
           rowData.userType === 'GENERAL_USER'
-            ? t('security.user.ordinary_user')
-            : t('security.user.administrator'),
+            ? '일반 사용자'
+            : '관리자',
         ...COLUMN_WIDTH_CONFIG['type']
       },
       {
-        title: t('security.user.tenant_code'),
+        title: '테넌트 코드',
         key: 'tenantCode',
         ...COLUMN_WIDTH_CONFIG['name']
       },
       {
-        title: t('security.user.queue'),
+        title: 'Queue',
         key: 'queue',
         width: 120
       },
       {
-        title: t('security.user.email'),
+        title: 'Email',
         key: 'email',
         ...COLUMN_WIDTH_CONFIG['name']
       },
       {
-        title: t('security.user.phone'),
+        title: '전화번호',
         key: 'phone',
         width: 140
       },
       {
-        title: t('security.user.state'),
+        title: '상태',
         key: 'state',
         ...COLUMN_WIDTH_CONFIG['state'],
         render: (rowData: any, unused: number) =>
@@ -106,26 +86,22 @@ export function useColumns(onCallback: Function) {
             { type: rowData.state === 1 ? 'success' : 'error' },
             {
               default: () =>
-                t(
-                  `security.user.state_${
-                    rowData.state === 1 ? 'enabled' : 'disabled'
-                  }`
-                )
+                rowData.state === 1 ? 'Enabled' : 'Disabled'
             }
           )
       },
       {
-        title: t('security.user.create_time'),
+        title: '생성일시',
         key: 'createTime',
         ...COLUMN_WIDTH_CONFIG['time']
       },
       {
-        title: t('security.user.update_time'),
+        title: '수정일시',
         key: 'updateTime',
         ...COLUMN_WIDTH_CONFIG['time']
       },
       {
-        title: t('security.user.operation'),
+        title: 'Operation',
         key: 'operation',
         ...COLUMN_WIDTH_CONFIG['operation'](4),
         render: (rowData: InternalRowData, unused: number) => {
@@ -137,20 +113,23 @@ export function useColumns(onCallback: Function) {
                   trigger: 'click',
                   options: [
                     {
-                      label: t('security.user.project'),
+                      label: 'Project',
                       key: 'authorize_project'
                     },
                     {
-                      label: t('security.user.resource'),
+                      label: 'Resource',
                       key: 'authorize_resource'
                     },
                     {
-                      label: t('security.user.datasource'),
+                      label: 'Datasource',
                       key: 'authorize_datasource'
                     },
-                    { label: t('security.user.udf'), key: 'authorize_udf' },
+                    { 
+                      label: 'UDF Function', 
+                      key: 'authorize_udf' 
+                    },
                     {
-                      label: t('security.user.namespace'),
+                      label: 'Namespace',
                       key: 'authorize_namespace'
                     }
                   ],
@@ -177,7 +156,7 @@ export function useColumns(onCallback: Function) {
                             icon: () => h(NIcon, null, () => h(UserOutlined))
                           }
                         ),
-                      default: () => t('security.user.authorize')
+                      default: () => 'Authorize'
                     }
                   )
               ),
@@ -197,7 +176,7 @@ export function useColumns(onCallback: Function) {
                       },
                       () => h(NIcon, null, () => h(EditOutlined))
                     ),
-                  default: () => t('security.user.edit')
+                  default: () => 'Edit'
                 }
               ),
               IS_ADMIN &&
@@ -218,7 +197,7 @@ export function useColumns(onCallback: Function) {
                         },
                         () => h(NIcon, null, () => h(KeyOutlined))
                       ),
-                    default: () => t('security.user.reset_password')
+                    default: () => 'Reset Password'
                   }
                 ),
               h(
@@ -248,10 +227,10 @@ export function useColumns(onCallback: Function) {
                                 })
                             }
                           ),
-                        default: () => t('security.user.delete')
+                        default: () => 'Delete'
                       }
                     ),
-                  default: () => t('security.user.delete_confirm')
+                  default: () => 'Are you sure to delete?'
                 }
               )
             ]
@@ -269,7 +248,7 @@ export function useColumns(onCallback: Function) {
     createColumns()
   })
 
-  watch(useI18n().locale, () => {
+  watch(() => 'koKR', () => {
     createColumns()
   })
 

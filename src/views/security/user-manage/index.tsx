@@ -1,23 +1,5 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { defineComponent, getCurrentInstance, toRefs } from 'vue'
-import { NButton, NIcon, NSpace, NDataTable, NPagination } from 'naive-ui'
-import { useI18n } from 'vue-i18n'
+import { NButton, NIcon, NSpace, NPagination } from 'naive-ui'
 import { SearchOutlined } from '@vicons/antd'
 import { useColumns } from './use-columns'
 import { useTable } from './use-table'
@@ -26,12 +8,12 @@ import AuthorizeModal from './components/authorize-modal'
 import PasswordModal from './components/password-modal'
 import Card from '@/components/card'
 import Search from '@/components/input-search'
+import BaseTable from '@/components/base-table'
 
 const UsersManage = defineComponent({
   name: 'user-manage',
   setup() {
-    const { t } = useI18n()
-    const { state, changePage, changePageSize, updateList, onOperationClick } =
+    const { state, changePage, updateList, onOperationClick } =
       useTable()
     const { columnsRef } = useColumns(onOperationClick)
 
@@ -51,17 +33,20 @@ const UsersManage = defineComponent({
 
     const trim = getCurrentInstance()?.appContext.config.globalProperties.trim
 
+    const handlePageChange = (page: number) => {
+      changePage(page);
+    };
+
     return {
-      t,
       columnsRef,
       ...toRefs(state),
       changePage,
-      changePageSize,
       onAddUser,
       onUpdatedList: updateList,
       onDetailModalCancel,
       onAuthorizeModalCancel,
       onPasswordModalCancel,
+      handlePageChange,
       trim
     }
   },
@@ -76,7 +61,7 @@ const UsersManage = defineComponent({
               class='btn-create-user'
               size='small'
             >
-              {this.t('security.user.create_user')}
+              {"사용자 생성하기"}
             </NButton>
             <NSpace>
               <Search
@@ -91,29 +76,38 @@ const UsersManage = defineComponent({
             </NSpace>
           </NSpace>
         </Card>
-        <Card title={this.t('menu.user_manage')}>
-          <NSpace vertical>
-            <NDataTable
-              row-class-name='items'
-              columns={this.columnsRef.columns}
-              data={this.list}
-              loading={this.loading}
-              scrollX={this.columnsRef.tableWidth}
+        {/* <Card title={'사용자 관리'}> */}
+        <NSpace vertical>
+          {/* <NDataTable
+            row-class-name='items'
+            columns={this.columnsRef.columns}
+            data={this.list}
+            loading={this.loading}
+            scrollX={this.columnsRef.tableWidth}
+          /> */}
+          <BaseTable
+            tableHeader={this.columnsRef.columns} // 헤더
+            tableData={this.list}                 // 현재 페이지의 리스트
+            tableItemCount={this.itemCount}       // 전체 데이터 개수
+            currentPage={this.page}               // 현재 페이지 
+            pageSize={this.pageSize}              // 페이지 사이즈 Default 10
+            title="사용자 관리"
+            onChangePage={this.handlePageChange}
+          />
+          {/* <NSpace justify='center'>
+            <NPagination
+              v-model:page={this.page}
+              v-model:page-size={this.pageSize}
+              item-count={this.itemCount}
+              show-size-picker
+              page-sizes={[10, 30, 50]}
+              show-quick-jumper
+              on-update:page={this.changePage}
+              on-update:page-size={this.changePageSize}
             />
-            <NSpace justify='center'>
-              <NPagination
-                v-model:page={this.page}
-                v-model:page-size={this.pageSize}
-                item-count={this.itemCount}
-                show-size-picker
-                page-sizes={[10, 30, 50]}
-                show-quick-jumper
-                on-update:page={this.changePage}
-                on-update:page-size={this.changePageSize}
-              />
-            </NSpace>
-          </NSpace>
-        </Card>
+          </NSpace> */}
+        </NSpace>
+        {/* </Card> */}
         <UserDetailModal
           show={this.detailModalShow}
           currentRecord={this.currentRecord}
