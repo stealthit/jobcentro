@@ -1,6 +1,6 @@
 import { defineComponent, PropType, ref } from 'vue'
 import styles from './index.module.scss'
-import Pagination from '../components/pagination'
+import Pagination from './pagination'
 
 export type TableColumn = {
   key: string;       // 데이터의 키 값

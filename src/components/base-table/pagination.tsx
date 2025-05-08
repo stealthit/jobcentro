@@ -79,16 +79,16 @@ const Pagination = defineComponent({
     };
 
     // 이전 페이지 그룹으로 이동
-    const goToPrevGroup = () => {
-      if (startPage.value > 1) {
-        emit('change-page', startPage.value - 1);
+    const goToPrevPage = () => {
+      if (currentPage.value > 1) {
+        emit('change-page', currentPage.value - 1);
       }
     };
 
     // 다음 페이지 그룹으로 이동
-    const goToNextGroup = () => {
-      if (endPage.value < totalPage.value) {
-        emit('change-page', endPage.value + 1);
+    const goToNextPage = () => {
+      if (endPage.value != currentPage.value) {
+        emit('change-page', currentPage.value + 1);
       }
     };
 
@@ -102,8 +102,8 @@ const Pagination = defineComponent({
       goToPage,
       goToFirstPage,
       goToLastPage,
-      goToPrevGroup,
-      goToNextGroup
+      goToPrevPage,
+      goToNextPage
     };
   },
   render() {
@@ -118,7 +118,7 @@ const Pagination = defineComponent({
         </a>
         <a 
           href="javascript:void(0);" 
-          onClick={this.goToPrevGroup} 
+          onClick={this.goToPrevPage} 
           class={this.currentPage === 1 ? '' : ''}
         >
           <img class="ic-arr-prev-32" alt="이전 그룹" />
@@ -140,7 +140,7 @@ const Pagination = defineComponent({
         </ul>
         <a 
           href="javascript:void(0);" 
-          onClick={this.goToNextGroup} 
+          onClick={this.goToNextPage} 
           class={this.currentPage === this.totalPage ? '' : ''}
         >
           <img class="ic-arr-next-32" alt="다음 그룹" />
