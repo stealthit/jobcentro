@@ -1,25 +1,7 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { useAsyncState } from '@vueuse/core'
 import { reactive, h, ref } from 'vue'
 import { format } from 'date-fns'
 import { NButton, NIcon, NPopconfirm, NSpace, NTooltip } from 'naive-ui'
-import { useI18n } from 'vue-i18n'
 import {
   queryAlertGroupListPaging,
   delAlertGroupById
@@ -27,10 +9,9 @@ import {
 import { DeleteOutlined, EditOutlined } from '@vicons/antd'
 import { parseTime } from '@/common/common'
 import type { AlarmGroupRes } from '@/service/modules/alert-group/types'
+import { COLUMN_WIDTH_CONFIG } from '@/common/column-width-config'
 
 export function useTable() {
-  const { t } = useI18n()
-
   const handleEdit = (row: any) => {
     variables.showModalRef = true
     variables.statusRef = 1
@@ -42,27 +23,33 @@ export function useTable() {
       {
         title: '#',
         key: 'index',
-        render: (row: any, index: number) => index + 1
+        render: (row: any, index: number) => index + 1,
+        ...COLUMN_WIDTH_CONFIG['index']
       },
       {
-        title: t('security.alarm_group.alert_group_name'),
-        key: 'groupName'
+        title: '알람 그룹명',
+        key: 'groupName',
+        ...COLUMN_WIDTH_CONFIG['name']
       },
       {
-        title: t('security.alarm_group.alarm_group_description'),
-        key: 'description'
+        title: '알람 그룹 설명',
+        key: 'description',
+        ...COLUMN_WIDTH_CONFIG['note']
       },
       {
-        title: t('security.alarm_group.create_time'),
-        key: 'createTime'
+        title: '생성 일시',
+        key: 'createTime',
+        ...COLUMN_WIDTH_CONFIG['time']
       },
       {
-        title: t('security.alarm_group.update_time'),
-        key: 'updateTime'
+        title: '수정 일시',
+        key: 'updateTime',
+        ...COLUMN_WIDTH_CONFIG['time']
       },
       {
-        title: t('security.alarm_group.operation'),
+        title: '액션',
         key: 'operation',
+        ...COLUMN_WIDTH_CONFIG['operation'](2),
         render(row: any) {
           return h(NSpace, null, {
             default: () => [
@@ -86,7 +73,7 @@ export function useTable() {
                           h(NIcon, null, { default: () => h(EditOutlined) })
                       }
                     ),
-                  default: () => t('security.alarm_group.edit')
+                  default: () => 'Edit'
                 }
               ),
               h(
@@ -117,10 +104,10 @@ export function useTable() {
                                 })
                             }
                           ),
-                        default: () => t('security.alarm_group.delete')
+                        default: () => 'Delete'
                       }
                     ),
-                  default: () => t('security.alarm_group.delete_confirm')
+                  default: () => 'Delete?'
                 }
               )
             ]
@@ -137,6 +124,8 @@ export function useTable() {
     pageSize: ref(10),
     searchVal: ref(null),
     totalPage: ref(1),
+    itemCount: ref(0),
+    currentPage: ref(1),
     showModalRef: ref(false),
     statusRef: ref(0),
     row: {},
@@ -175,7 +164,9 @@ export function useTable() {
           }
         }) as any
         variables.totalPage = res.totalPage
-        variables.loadingRef = false
+        variables.loadingRef = false        
+        variables.itemCount = res.total
+        variables.currentPage = res.currentPage
       }),
       {}
     )

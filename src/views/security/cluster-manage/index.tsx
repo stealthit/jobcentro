@@ -1,39 +1,20 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import {
   defineComponent,
   getCurrentInstance,
   onMounted,
-  toRefs,
-  watch
+  toRefs
 } from 'vue'
-import { NButton, NDataTable, NIcon, NPagination, NSpace } from 'naive-ui'
+import { NButton, NIcon, NSpace } from 'naive-ui'
 import { SearchOutlined } from '@vicons/antd'
-import { useI18n } from 'vue-i18n'
 import { useTable } from './use-table'
 import ClusterModal from './components/cluster-modal'
 import Card from '@/components/card'
 import Search from '@/components/input-search'
+import BaseTable from '@/components/base-table'
 
 const clusterManage = defineComponent({
   name: 'cluster-manage',
   setup() {
-    const { t } = useI18n()
     const { variables, getTableData, createColumns } = useTable()
 
     const requestData = () => {
@@ -70,17 +51,20 @@ const clusterManage = defineComponent({
 
     const trim = getCurrentInstance()?.appContext.config.globalProperties.trim
 
+    const handlePageChange = (page: number) => {
+      getTableData({
+        pageSize: variables.pageSize,
+        pageNo: page,
+        searchVal: variables.searchVal
+      });
+    };
+
     onMounted(() => {
       createColumns(variables)
       requestData()
     })
 
-    watch(useI18n().locale, () => {
-      createColumns(variables)
-    })
-
     return {
-      t,
       ...toRefs(variables),
       requestData,
       onCancelModal,
@@ -88,19 +72,16 @@ const clusterManage = defineComponent({
       onUpdatePageSize,
       handleModalChange,
       onSearch,
+      handlePageChange,
       trim
     }
   },
   render() {
     const {
-      t,
-      requestData,
-      onUpdatePageSize,
       onCancelModal,
       onConfirmModal,
       handleModalChange,
       onSearch,
-      loadingRef
     } = this
 
     return (
@@ -113,12 +94,12 @@ const clusterManage = defineComponent({
               onClick={handleModalChange}
               class='btn-create-cluster'
             >
-              {t('security.cluster.create_cluster')}
+              {'클러스터 생성'}
             </NButton>
             <NSpace>
               <Search
                 v-model:value={this.searchVal}
-                placeholder={t('security.cluster.search_tips')}
+                placeholder={'키워드를 입력해주세요'}
                 onSearch={onSearch}
               />
               <NButton size='small' type='primary' onClick={onSearch}>
@@ -129,9 +110,9 @@ const clusterManage = defineComponent({
             </NSpace>
           </NSpace>
         </Card>
-        <Card title={t('menu.cluster_manage')}>
+        {/* <Card title={'클러스터 관리'}> */}  
           <NSpace vertical>
-            <NDataTable
+            {/* <NDataTable
               loading={loadingRef}
               row-class-name='items'
               columns={this.columns}
@@ -149,9 +130,18 @@ const clusterManage = defineComponent({
                 onUpdatePage={requestData}
                 onUpdatePageSize={onUpdatePageSize}
               />
-            </NSpace>
+            </NSpace> */}
+            <BaseTable
+              tableHeader={this.columns}            // 헤더
+              tableData={this.tableData}            // 현재 페이지의 리스트
+              tableItemCount={this.itemCount}       // 전체 페이지 개수
+              currentPage={this.currentPage}        // 현재 페이지 
+              pageSize={this.pageSize}              // 페이지 사이즈 Default 10
+              title="클러스터 관리"
+              onChangePage={this.handlePageChange}  // 페이지 변경 이벤트
+            />
           </NSpace>
-        </Card>
+        {/* </Card> */}
         <ClusterModal
           showModalRef={this.showModalRef}
           statusRef={this.statusRef}

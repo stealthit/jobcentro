@@ -1,20 +1,3 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { useAsyncState } from '@vueuse/core'
 import {
   queryTenantListPaging,
@@ -22,7 +5,6 @@ import {
 } from '@/service/modules/tenants'
 import { reactive, h, ref } from 'vue'
 import { NButton, NIcon, NPopconfirm, NSpace, NTooltip } from 'naive-ui'
-import { useI18n } from 'vue-i18n'
 import { DeleteOutlined, EditOutlined } from '@vicons/antd'
 import {
   COLUMN_WIDTH_CONFIG,
@@ -31,8 +13,6 @@ import {
 } from '@/common/column-width-config'
 
 export function useTable() {
-  const { t } = useI18n()
-
   const handleEdit = (row: any) => {
     variables.showModalRef = true
     variables.statusRef = 1
@@ -61,33 +41,33 @@ export function useTable() {
         ...COLUMN_WIDTH_CONFIG['index']
       },
       {
-        title: t('security.tenant.tenant_code'),
+        title: '테넌트 코드',
         key: 'tenantCode',
         className: 'tenant-code',
         ...COLUMN_WIDTH_CONFIG['userName']
       },
       {
-        title: t('security.tenant.description'),
+        title: '테넌트 설명',
         key: 'description',
         ...COLUMN_WIDTH_CONFIG['note']
       },
       {
-        title: t('security.tenant.queue_name'),
+        title: '큐 이름',
         key: 'queueName',
         ...COLUMN_WIDTH_CONFIG['name']
       },
       {
-        title: t('security.tenant.create_time'),
+        title: '생성일시',
         key: 'createTime',
         ...COLUMN_WIDTH_CONFIG['time']
       },
       {
-        title: t('security.tenant.update_time'),
+        title: '수정일시',
         key: 'updateTime',
         ...COLUMN_WIDTH_CONFIG['time']
       },
       {
-        title: t('security.tenant.actions'),
+        title: '액션',
         key: 'actions',
         ...COLUMN_WIDTH_CONFIG['operation'](2),
         render(row: any) {
@@ -114,7 +94,7 @@ export function useTable() {
                           h(NIcon, null, { default: () => h(EditOutlined) })
                       }
                     ),
-                  default: () => t('security.tenant.edit')
+                  default: () => 'Edit'
                 }
               ),
               h(
@@ -146,10 +126,10 @@ export function useTable() {
                                 })
                             }
                           ),
-                        default: () => t('security.tenant.delete')
+                        default: () => 'Delete'
                       }
                     ),
-                  default: () => t('security.tenant.delete_confirm')
+                  default: () => 'Delete?'
                 }
               )
             ]
@@ -170,6 +150,8 @@ export function useTable() {
     pageSize: ref(10),
     searchVal: ref(null),
     totalPage: ref(1),
+    itemCount: ref(0),
+    currentPage: ref(1),
     showModalRef: ref(false),
     statusRef: ref(0),
     row: {},
@@ -187,7 +169,9 @@ export function useTable() {
           }
         })
         variables.totalPage = res.totalPage
-        variables.loadingRef = false
+        variables.loadingRef = false        
+        variables.itemCount = res.total
+        variables.currentPage = res.currentPage
       }),
       {}
     )

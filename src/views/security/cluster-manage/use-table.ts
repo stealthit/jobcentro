@@ -1,25 +1,7 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { useAsyncState } from '@vueuse/core'
 import { reactive, h, ref } from 'vue'
 import { format } from 'date-fns'
 import { NButton, NPopconfirm, NSpace, NTooltip, NTag, NIcon } from 'naive-ui'
-import { useI18n } from 'vue-i18n'
 import {
   queryClusterListPaging,
   deleteClusterByCode
@@ -34,8 +16,6 @@ import {
 } from '@/common/column-width-config'
 
 export function useTable() {
-  const { t } = useI18n()
-
   const handleEdit = (row: any) => {
     variables.showModalRef = true
     variables.statusRef = 1
@@ -51,13 +31,13 @@ export function useTable() {
         ...COLUMN_WIDTH_CONFIG['index']
       },
       {
-        title: t('security.cluster.cluster_name'),
+        title: '클러스터명',
         key: 'name',
         className: 'cluster-name',
         ...COLUMN_WIDTH_CONFIG['name']
       },
       {
-        title: t('security.cluster.cluster_components'),
+        title: '클러스터 구성',
         key: 'config',
         ...COLUMN_WIDTH_CONFIG['tag'],
         render: (row: ClusterItem) =>
@@ -84,22 +64,22 @@ export function useTable() {
           })
       },
       {
-        title: t('security.cluster.cluster_desc'),
+        title: '클러스터 설명',
         key: 'description',
         ...COLUMN_WIDTH_CONFIG['note']
       },
       {
-        title: t('security.cluster.create_time'),
+        title: '생성일시',
         key: 'createTime',
         ...COLUMN_WIDTH_CONFIG['time']
       },
       {
-        title: t('security.cluster.update_time'),
+        title: '수정일시',
         key: 'updateTime',
         ...COLUMN_WIDTH_CONFIG['time']
       },
       {
-        title: t('security.cluster.operation'),
+        title: '액션',
         key: 'operation',
         ...COLUMN_WIDTH_CONFIG['operation'](2),
         render(row: any) {
@@ -126,7 +106,7 @@ export function useTable() {
                           h(NIcon, null, { default: () => h(EditOutlined) })
                       }
                     ),
-                  default: () => t('security.cluster.edit')
+                  default: () => 'Edit'
                 }
               ),
               h(
@@ -158,10 +138,10 @@ export function useTable() {
                                 })
                             }
                           ),
-                        default: () => t('security.cluster.delete')
+                        default: () => 'Delete'
                       }
                     ),
-                  default: () => t('security.cluster.delete_confirm')
+                  default: () => 'Delete?'
                 }
               )
             ]
@@ -182,6 +162,8 @@ export function useTable() {
     pageSize: ref(10),
     searchVal: ref(null),
     totalPage: ref(1),
+    itemCount: ref(0),
+    currentPage: ref(1),
     showModalRef: ref(false),
     statusRef: ref(0),
     row: {},
@@ -221,6 +203,8 @@ export function useTable() {
         }) as any
         variables.totalPage = res.totalPage
         variables.loadingRef = false
+        variables.itemCount = res.total
+        variables.currentPage = res.currentPage
       }),
       {}
     )

@@ -1,43 +1,24 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import {
   defineComponent,
   getCurrentInstance,
   onMounted,
   ref,
-  toRefs,
-  watch
+  toRefs
 } from 'vue'
-import { NButton, NIcon, NDataTable, NPagination, NSpace } from 'naive-ui'
+import { NButton, NIcon, NSpace } from 'naive-ui'
 import DetailModal from './detail'
 import Card from '@/components/card'
 import { SearchOutlined } from '@vicons/antd'
-import { useI18n } from 'vue-i18n'
 import { useUserInfo } from './use-userinfo'
 import { useColumns } from './use-columns'
 import { useTable } from './use-table'
 import type { IRecord } from './types'
 import Search from '@/components/input-search'
+import BaseTable from '@/components/base-table'
 
 const AlarmInstanceManage = defineComponent({
   name: 'alarm-instance-manage',
   setup() {
-    const { t } = useI18n()
     const showDetailModal = ref(false)
     const currentRecord = ref()
     const columns = ref()
@@ -69,16 +50,11 @@ const AlarmInstanceManage = defineComponent({
     const trim = getCurrentInstance()?.appContext.config.globalProperties.trim
 
     onMounted(() => {
+      columns.value = getColumns()
       changePage(1)
-      columns.value = getColumns()
-    })
-
-    watch(useI18n().locale, () => {
-      columns.value = getColumns()
     })
 
     return {
-      t,
       IS_ADMIN,
       showDetailModal,
       currentRecord: currentRecord,
@@ -94,7 +70,6 @@ const AlarmInstanceManage = defineComponent({
   },
   render() {
     const {
-      t,
       IS_ADMIN,
       currentRecord,
       showDetailModal,
@@ -103,9 +78,7 @@ const AlarmInstanceManage = defineComponent({
       page,
       pageSize,
       itemCount,
-      loading,
       changePage,
-      changePageSize,
       onCreate,
       onUpdatedList,
       onCloseModal
@@ -117,17 +90,15 @@ const AlarmInstanceManage = defineComponent({
           {{
             default: () => (
               <NSpace justify='space-between'>
-                {IS_ADMIN && (
+                {this.IS_ADMIN && (
                   <NButton onClick={onCreate} type='primary' size='small'>
-                    {t('security.alarm_instance.create_alarm_instance')}
+                    {'알람 인스턴스 생성'}
                   </NButton>
                 )}
                 <NSpace justify='end' wrap={false}>
                   <Search
                     v-model:value={this.searchVal}
-                    placeholder={`${t(
-                      'security.alarm_instance.search_input_tips'
-                    )}`}
+                    placeholder={'키워드를 입력해주세요'}
                     onSearch={onUpdatedList}
                   />
                   <NButton type='primary' size='small' onClick={onUpdatedList}>
@@ -140,9 +111,9 @@ const AlarmInstanceManage = defineComponent({
             )
           }}
         </Card>
-        <Card title={t('menu.alarm_instance_manage')}>
+        {/* <Card title={t('menu.alarm_instance_manage')}> */}
           <NSpace vertical>
-            <NDataTable
+            {/* <NDataTable
               columns={columns}
               data={list}
               loading={loading}
@@ -157,9 +128,20 @@ const AlarmInstanceManage = defineComponent({
                 on-update:page={changePage}
                 on-update:page-size={changePageSize}
               />
-            </NSpace>
+            </NSpace> */}
+            {/* columns 로딩 시간이 있어서 하기 구문 추가 */}
+            {columns && list ? (
+              <BaseTable
+                tableHeader={columns}             // 헤더
+                tableData={list}                  // 현재 페이지의 리스트
+                tableItemCount={itemCount}        // 전체 페이지 개수
+                currentPage={page}                // 현재 페이지 
+                pageSize={pageSize}               // 페이지 사이즈 Default 10
+                title="알람 인스턴스 관리"
+                onChangePage={changePage}         // 페이지 변경 이벤트
+            />) : null}   
           </NSpace>
-        </Card>
+        {/* </Card> */}
         {IS_ADMIN && (
           <DetailModal
             show={showDetailModal}
