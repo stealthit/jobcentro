@@ -1,0 +1,85 @@
+.userBox {
+  width: 500px;
+}
+
+.authBox {
+  width: 600px;
+  height: 228px;
+}
+
+.prjAuthBox {
+  width: 800px;
+  
+  .topGroup {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+    input[type="text"] {width: 200px;}
+    .btnBox {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+}
+
+.authBox {
+  width: 800px;
+  height: 540px;
+  font-weight: 500;
+
+  .modalBody {
+    overflow: initial !important;
+  }
+  .itemBox {
+    height: 400px;
+    border-radius: 10px;
+    border: 1px solid #DBDFE9;
+    display: flex;
+
+    .listBox {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .listTitle {
+        display: flex;
+        gap: 8px;
+        .underText {
+          cursor: pointer;
+           color: #04A3BB;
+           text-decoration: underline;
+        }
+        .itemCnt {
+          color: #4B5675;
+        }
+      }
+      .itemList {
+        // flex: 1;
+        overflow: auto;
+        display: flex;
+        .noData {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          gap: 8px;
+          color: #99A1B7;
+        }
+
+        ul.dataList {
+          
+          li {
+            height: 36px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+        }
+      }
+    }
+  }
+}
