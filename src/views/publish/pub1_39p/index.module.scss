@@ -1,0 +1,36 @@
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  .calendarBox {
+    height: 62px;
+  } 
+
+  .chartWrap {
+    flex: 1;
+    .btnGrp {
+      display: flex;
+      align-items: center;
+      justify-items: flex-end;
+      gap: 8px;
+      input[type="text"] {
+        width: 200px;
+        font-weight: 500;
+        height: 36px;
+        border-radius: 10px;
+        border: 1px solid #DBDFE9;
+        padding: 0 12px;      
+    
+        &:invalid {
+          border: 1px solid #F24A4A;
+        }
+      }    
+    }
+
+    select {width: 200px;}
+
+    .chartBox {flex: 1;}
+  }
+}

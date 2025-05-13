@@ -967,9 +967,12 @@ input[type="radio"]{
   padding: 0 12px;  
 
   .data-box {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 8px;
+    padding-right: 8px;
+    overflow: hidden;
     input[type="datetime-local"] {
       // &::-webkit-calendar-picker-indicator {
       //   display: none;
@@ -984,11 +987,35 @@ input[type="radio"]{
       &::-webkit-calendar-picker-indicator {
         width: 150px;
         position: absolute;
-        right: -105px;
+        left: calc(100% - 15px);
+        top: 10px;
         background: url(#{$img-path}ic_calendar_16.svg);
         background-repeat: no-repeat;
       }
     }
+  }
+}
+
+.btn-input-box {
+  display: flex;
+  input[type="text"] {
+    height: 36px;
+    border: 1px solid #DBDFE9;
+    min-width: 160px;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+  .btn-input {
+    width: 40px;
+    height: 36px;
+    border: 1px solid #DBDFE9;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-left: 0;
+    background-color: #F4F7F6;
+    background-image: url(#{$img-path}ic_btn_input_16.svg);
+    background-repeat: no-repeat;
+    background-position: center;
   }
 }
 
@@ -1041,7 +1068,9 @@ input[type="radio"]{
     }
   }
 }
-
+.jistify-end {
+  justify-content: flex-end !important;
+}
 .pick-date-group {
   .title-wrap {
     display: flex;

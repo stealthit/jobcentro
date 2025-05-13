@@ -65,7 +65,7 @@ const publish3 = defineComponent({
                                 <button class="btnType1 btn-format">포맷</button>
                                 <button class="btnType1 btn-version">버전정보</button>
                                 <button class="btnType1 btn-save">저장</button>
-                                <button cl        ass="btnType1 btn-close2">닫기</button>
+                                <button class="btnType1 btn-close2">닫기</button>
                             </div>
                             <div class="searchBox">
                                 <select class="selectBox">
