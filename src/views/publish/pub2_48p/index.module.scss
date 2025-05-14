@@ -19,18 +19,14 @@
       padding: 0 12px;      
     }
 
-    a {color: #04A3BB;}
     table {
       table-layout: fixed;
       thead {
         tr {
           th {
             &:nth-child(1) {
-              width: 40px;
-            }
-            &:nth-child(7),&:nth-child(8) {
-              width: 200px;
-            }
+              width: 80px;
+            }            
           }
         }
       }      

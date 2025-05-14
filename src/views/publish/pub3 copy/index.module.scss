@@ -1,0 +1,50 @@
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  
+  .nodeBox {
+    flex: 1;
+    .btnGrp {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .workflowBox {
+      flex: 1;
+    }
+  } 
+
+  // 메뉴리스트
+  ul.menuBox {
+    min-width: 200px;
+    position: absolute;
+    padding: 8px 0 !important;
+    font-weight: 500;
+    gap: 0 !important;
+    li {
+      cursor: pointer;
+      position: relative;
+      padding: 0 16px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      &.cur {
+        background: #E3F2FD;
+      }
+
+      .arrSub {
+        width: 12px;
+        height: 12px;
+        position: absolute;
+        right: 16px;
+        top: 14px;
+        background: url('@/assets/images/ic_arr_right_12.svg');
+      }
+    }
+  }
+}
+
+

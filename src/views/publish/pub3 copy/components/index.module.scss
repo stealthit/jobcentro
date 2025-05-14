@@ -1,0 +1,130 @@
+.versionBox {
+  width: 800px;
+}
+
+.basicInfoBox {
+  width: 400px;
+}
+
+.alertBox {
+  min-width: 400px;
+  min-height: 230px;
+  .modalBody {
+    gap: 28px;
+    padding: 20px;
+    align-items: center;
+
+    .imgBox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+    ul.textBox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      li {
+        &:first-child {
+          font-size: 18px;
+          font-weight: 700;
+          color: #071437;
+        }
+        &:nth-child(2) {
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+.runPrgBox {
+  width: 600px;
+
+  .btnBox {
+    margin: 12px 20px;
+  }
+}
+
+.schedateBox {
+  width: 400px;
+
+  table {
+    thead {
+      th {
+        &:nth-child(1) {
+          width: 50px;
+        }
+      }
+    }
+    tbody {
+      tr {
+        &:last-child td {
+          border: none;
+        }
+      }
+    }
+  }
+}
+
+.setAlarmBox {
+  width: 600px;
+}
+
+.regGroupBox {
+  width: 400px;
+}
+
+.taskBox {
+  width: 650px;
+
+  .sqlBox {
+    width: 100%;
+    height: 194px;
+    border: 1px solid #DBDFE9;
+    border-radius: 10px;
+  }
+
+  .withBtn {
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    height: 36px;
+
+    ul.fieldListBox {
+      flex: 1;
+      display: flex;
+      gap: 8px;
+
+      li {
+        flex: 1;
+
+        &:nth-child(2) {width: 80px;flex: none;}
+        select,input {
+          width: 100%;
+        }
+      }
+    }
+
+    & > input, & > select {
+      flex: 1;
+    }
+    
+    .btnBox {
+      width: 72px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+
+  &.http {
+    .withBtn {
+      ul.fieldListBox {
+        li:nth-child(2) {width: initial;flex: 1;}
+      }
+    }
+  }
+}
