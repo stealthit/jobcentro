@@ -9,20 +9,14 @@ const publish2 = defineComponent({
             <div className={styles.container}>
                 <div class={[styles.tableBox,"contentBox"]}>
                     <div class="titleWrap"> 
-                        <div class="title">Task group queue</div>                     
+                        <div class="title">Task group option</div>                     
                         <div className="h-flex">
                             <div class={styles.btnGrp}>
-                                <button class="btnType2">우선순위 수정</button>
-                                <button class="btnType1 btn-restart">실행</button>
-                                <select class="selectBox" required>
-                                    <option value="" selected disabled hidden>Task group name</option>
-                                    <option value="">val1</option>
-                                    <option value="">val2</option>
-                                    <option value="">val3</option>
-                                    <option value="">val4</option>
-                                </select>
-                                <input type="text" name="" id="" placeholder="Workflow instance"/>
-                                <input type="text" name="" id="" placeholder="Task instance" />
+                                <button class="btnType2">Create task group</button>
+                                <button class="btnType1 btn-active">활성화</button>
+                                <button class="btnType1 btn-inactive">비활성화</button>
+                                <button class="btnType1 btn-modify">수정</button>
+                                <button class="btnType1 btn-format">작업그룹 대기열</button>
                             </div>
                             <div class="searchBox">
                                 <input type="text" name="" id="" placeholder="키워드 입력" />
@@ -36,14 +30,11 @@ const publish2 = defineComponent({
                                 <tr>
                                     <th><input type="checkbox" name="" id="" /></th>
                                     <th>#</th>
+                                    <th>Task group option</th>
                                     <th>Project name</th>
-                                    <th>Task name</th>
-                                    <th>Workflow instance</th>
-                                    <th>Task group name</th>
-                                    <th>Priority</th>
-                                    <th>Starting status</th>
-                                    <th>In queue</th>
-                                    <th>Task status</th>
+                                    <th>Resource pool size</th>
+                                    <th>Used resource</th>
+                                    <th>Task group desc</th>
                                     <th>Create time</th>
                                     <th>Update time</th>
                                 </tr>
@@ -52,17 +43,25 @@ const publish2 = defineComponent({
                                 <tr>
                                     <td><input type="checkbox" name="" id="" /></td>
                                     <td>1</td>
-                                    <td>WorkflowTest</td>
-                                    <td>Shell2</td>
-                                    <td>ShellWorkflow-3-20250318000000</td>
-                                    <td>TaskGroup1</td>
-                                    <td>1</td>
+                                    <td>TaskGroup3Edit</td>
+                                    <td>test</td>
+                                    <td>12</td>
                                     <td>0</td>
-                                    <td>0</td>
-                                    <td>RELEASE</td>
+                                    <td>groupdesc</td>
                                     <td>2025-04-09 14:58:46</td>
                                     <td>2025-04-09 14:58:46</td>                                    
-                                </tr>                                                                                                                                                                                                          
+                                </tr>                                                                                        
+                                <tr>
+                                    <td><input type="checkbox" name="" id="" /></td>
+                                    <td>2</td>
+                                    <td>TaskGroup02</td>
+                                    <td>test</td>
+                                    <td>10</td>
+                                    <td>0</td>
+                                    <td>test</td>
+                                    <td>2025-04-09 14:58:46</td>
+                                    <td>2025-04-09 14:58:46</td>                                    
+                                </tr>                                                                                        
                                                                                                                      
                             </tbody>
                         </table>

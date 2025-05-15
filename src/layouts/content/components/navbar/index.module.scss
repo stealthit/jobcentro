@@ -35,7 +35,8 @@
     gap: 24px;
     align-items: center;
     height: 100%;
-    margin-left: 193px;
+    margin-left: 193px;    
+    &.sideOff {margin-left: 463px;}
 
     li {      
       cursor: pointer;

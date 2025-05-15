@@ -850,6 +850,9 @@ input[type="radio"]{
 .btn-treeview {
   @include create_btn_in_ic_16(treeview); 
 }
+.btn-edit {
+  @include create_btn_in_ic_16(edit); 
+}
 .btn-export {
   @include create_btn_in_ic_16(export); 
 }
@@ -907,7 +910,6 @@ input[type="radio"]{
 .btn-run {
   @include create_btn_in_ic_16(run); 
 }
-
 
 .btn-ic-info {
   @include create_btn_icon(info);

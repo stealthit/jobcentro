@@ -25,28 +25,15 @@
       thead {
         tr {
           th {
-            &:nth-child(1),&:nth-child(2) {
+            &:nth-child(1) {
               width: 40px;
             }
-            &:nth-child(7),&:nth-child(8),&:nth-child(9) {
-              width: 100px;
-            }
-            &:nth-child(10) {
-              width: 120px;
-            }
-            &:last-child,&:nth-last-child(2) {
-              width: 170px;
+            &:nth-child(7),&:nth-child(8) {
+              width: 200px;
             }
           }
         }
-      }    
-      tbody {
-        tr td {
-          &:nth-child(5) {
-            white-space:nowrap; text-overflow:ellipsis; overflow:hidden;
-          }          
-        }
-      }  
+      }      
     }
   } 
 }
