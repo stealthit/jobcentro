@@ -1,0 +1,60 @@
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  font-weight: 500;
+
+  .infoBox {
+    padding: 20px !important;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .userInfo1 {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+
+      ul.textBox li{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1.2;
+        &:first-child {
+          font-size: 24px;
+          font-weight: 700;
+          color: #071437;
+        }
+      }
+    }
+    
+    .userInfo2 {
+      display: grid;
+      gap: 16px 20px;
+      grid: '. .';
+
+      .item {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        li {
+          line-height: 1.22;
+          &:first-child {
+            font-size: 13px;
+          }
+          &:last-child {
+            color: #071437;
+          }
+        }
+      }
+    }
+
+  } 
+
+  
+}

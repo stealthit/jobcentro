@@ -930,6 +930,23 @@ input[type="radio"]{
   @include create_btn_icon(edit);
 }
 
+.btn-confirm {
+  height: 32px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 18px;
+  background: #04A3BB;
+  line-height: 1;
+  color: #fff;
+
+  &::before {
+    width: 16px;
+    height: 16px;
+    content: url(#{$img-path}ic_confirm_w_16.svg);
+  }
+}
 .btn-ic-calendar {
   width: 16px;
   height: 16px;
@@ -1438,6 +1455,12 @@ input[type="radio"]{
   width: 110px;
   height: 110px;
   content: url(#{$img-path}ic_check_110.svg);
+}
+
+.ic-profile-76 {
+  width: 76px;
+  height: 76px;
+  content: url(#{$img-path}ic_profile_76.svg);
 }
 
 // main
