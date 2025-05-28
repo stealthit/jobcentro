@@ -1062,6 +1062,12 @@ input[type="radio"]{
   display: flex;
   gap: 16px;
 }
+.flex-col {
+  flex-direction: column;
+  align-items: initial !important;
+  height: auto !important;
+}
+
 .contentBox {
   display: flex;
   flex-direction: column;
@@ -1072,6 +1078,7 @@ input[type="radio"]{
     justify-content: space-between;
     align-items: center;
     height: 32px;
+    line-height: 1.5;
     .title {
       display: flex;
       align-items: center;
@@ -1086,6 +1093,10 @@ input[type="radio"]{
         height: 5px;
         background: #1A6CD5;
       }
+    }
+    .title-info {
+      padding: 0 13px;
+      color: #99A1B7;
     }
   }
 
@@ -1445,6 +1456,30 @@ input[type="radio"]{
   content: url(#{$img-path}ic_info_48.svg);
 }
 
+.ic-run-48 {
+  width: 48px;
+  height: 48px;
+  content: url(#{$img-path}ic_run_48.svg);
+}
+
+.ic-error-48 {
+  width: 48px;
+  height: 48px;
+  content: url(#{$img-path}ic_error_48.svg);
+}
+
+.ic-done-48 {
+  width: 48px;
+  height: 48px;
+  content: url(#{$img-path}ic_done_48.svg);
+}
+
+.ic-expected-48 {
+  width: 48px;
+  height: 48px;
+  content: url(#{$img-path}ic_expected_48.svg);
+}
+
 .ic-nodata-36 {
   width: 36px;
   height: 36px;
@@ -1791,7 +1826,7 @@ input[type="radio"]{
       content: url(#{$img-path}ic_popup_help.svg);
     }
   }
-  .gap-8 {gap: 8px;}
+  .gap-8 {gap: 8px !important;}
   .modalBody {
     display: flex;
     flex-direction: column;

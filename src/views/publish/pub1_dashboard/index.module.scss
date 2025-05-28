@@ -1,0 +1,218 @@
+.container {
+  overflow: auto;
+  height: 100%;
+  display: flex;
+  gap: 16px;
+  font-weight: 500;
+
+  
+  .outsideWrap {
+    width: 27%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    .planBox {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px !important;
+
+      .detailWrap {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        align-items: center;
+        justify-content: center;
+
+        .circleProgressWrap {
+          position: relative;
+
+          .textPrgWrap {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .text {
+              font-weight: 500;
+              font-size: 24px;
+              color: #071437;
+            }
+            .value {
+              font-weight: 700;
+              font-size: 28px;
+              color: #1A6CD5;
+            }
+          }
+        }
+        .infoWrap {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          align-items: center;
+          .dateText {
+            font-weight: 700;
+            font-size: 28px;
+            color: #1A6CD5;
+          }
+          .infoText {
+            font-weight: 500;
+            font-size: 16px;
+            color: #071437;
+            span {
+              color: #1A6CD5;
+            }
+          }
+        }
+      }
+    }
+    .infoBox1 {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .dataWrap {
+        flex: 1;
+        display: grid;
+        gap: 16px;
+        grid: '. .';
+
+        .itemBox {
+          flex-direction: column;
+          gap: 20px;
+          
+          &:nth-child(1) {
+            background: #F2E8FF;
+          }
+          &:nth-child(2) {
+            background: #FEE3E5;
+          }
+          &:nth-child(3) {
+            background: #DDFCE6;
+          }
+          &:nth-child(4) {
+            background: #FEF4DE;
+          }
+
+          .infoWrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            
+            font-weight: 500;
+            font-size: 16px;
+            color: #78829D;
+          
+            .value {
+              font-weight: 700;
+              font-size: 28px;
+              color: #071437;
+            }
+          }
+        }
+      }
+    }
+    .infoBox2 {
+      flex: 1;
+
+      .dataWrap {
+        flex: 1;
+        display: grid;
+        gap: 10px;
+        grid-template-columns: 2fr 3fr;
+        grid-template-rows: 1fr 1fr;
+
+        .itemBox {
+          &:nth-child(1) {
+            background: #F2E8FF;
+            flex-direction: column;
+            gap: 20px;
+            grid-column: 1 / 2;
+            grid-row: 1 / 3;
+          }
+          &:nth-child(2) {
+            padding: 0 30px;
+            gap: 24px;
+            background: #DDFCE6;
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+            .infoWrap {flex: 1;}
+          }
+          &:nth-child(3) {
+            background: #FEE3E5;
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+            padding: 0 30px;
+            gap: 24px;
+            .infoWrap {flex: 1;}
+          }
+        }
+      }
+    }
+    .graphBox2 {
+      overflow: hidden;
+      flex: 1;
+    }
+    .graphWrap {
+      img {width: 100%;height: 100%;}
+    }
+  }
+  .centerWrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .runtimeWrap {
+      display: flex;
+      gap: 16px;
+      height: 33%;
+      min-height: 320px;
+      .graphBox1 {
+        overflow: hidden;
+        flex: 1;
+      }
+      .graphWrap {
+        img {width: 100%;height: 100%;}
+      }
+    }
+    
+    .cmdBox {
+      overflow: hidden;
+      flex: 1;
+      padding: 0 !important;
+      background: #151627 !important;
+      img { width: 100%;}
+    }
+  }
+
+  .itemBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;        
+
+    .infoWrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      
+      font-weight: 500;
+      font-size: 16px;
+      color: #78829D;
+    
+      .value {
+        font-weight: 700;
+        font-size: 28px;
+        color: #071437;
+      }
+    }
+  }
+}
